@@ -4,7 +4,7 @@ export function InstalacionesElectricasHeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/electrical-panel-industrial-installation-with-cabl.jpg')",
+          backgroundImage: "url('/images/electrical-panel-industrial-installation-with-cabl.jpg')",
         }}
       />
       <div className="absolute inset-0 bg-black/60 z-10" />

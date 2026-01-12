@@ -4,7 +4,7 @@ export function Impresion3DHeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/3d-printer-manufacturing-custom-parts-in-action-cl.jpg')",
+          backgroundImage: "url('/images/3d-printer-manufacturing-custom-parts-in-action-cl.jpg')",
         }}
       />
       <div className="absolute inset-0 bg-black/60 z-10" />

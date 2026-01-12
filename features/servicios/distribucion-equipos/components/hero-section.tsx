@@ -4,7 +4,7 @@ export function DistribucionEquiposHeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/technology-warehouse-with-computers-and-electronic.jpg')",
+          backgroundImage: "url('/images/technology-warehouse-with-computers-and-electronic.jpg')",
         }}
       />
       <div className="absolute inset-0 bg-black/60 z-10" />

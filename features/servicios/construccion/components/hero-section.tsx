@@ -4,7 +4,7 @@ export function ConstruccionHeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/construction-site-renovation-modern-building.jpg')",
+          backgroundImage: "url('/images/construction-site-renovation-modern-building.jpg')",
         }}
       />
       <div className="absolute inset-0 bg-black/60 z-10" />

@@ -4,7 +4,7 @@ export function RedesTelecomunicacionesHeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/network-server-room-with-fiber-optic-cables-and-sw.jpg')",
+          backgroundImage: "url('/images/network-server-room-with-fiber-optic-cables-and-sw.jpg')",
         }}
       />
       <div className="absolute inset-0 bg-black/60 z-10" />

@@ -4,7 +4,7 @@ export function SoftwareDevOpsHeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/software-developer-coding-on-multiple-monitors-wit.jpg')",
+          backgroundImage: "url('/images/software-developer-coding-on-multiple-monitors-wit.jpg')",
         }}
       />
       <div className="absolute inset-0 bg-black/60 z-10" />
