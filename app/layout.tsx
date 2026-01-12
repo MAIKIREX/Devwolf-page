@@ -17,7 +17,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: "INNOVA Ingeniería & Tecnología - Soluciones Integrales en Bolivia",
+  title: "Devwolf Ingeniería & Tecnología - Soluciones Integrales en Bolivia",
   description:
     "Empresa boliviana especializada en construcción, instalaciones eléctricas, redes & TI, software e impresión 3D",
 }

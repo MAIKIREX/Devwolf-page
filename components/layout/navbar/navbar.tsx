@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeToggle } from "@/components/layout/theme-toggle"
 import { cn } from "@/lib/utils"
 
 const services = [
@@ -37,10 +37,10 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/images/logo4.png" alt="INNOVA I&T" width={70} height={70} className="h-16 w-auto" />
+            <Image src="/images/logo4.png" alt="Devwolf I&T" width={70} height={70} className="h-16 w-auto" />
             <div className="flex flex-col">
               <span className="font-heading font-bold text-xl text-secondary dark:text-primary hidden sm:block">
-                INNOVA
+                Devwolf
               </span>
               <span className="hidden sm:block">
                 ingeniería & tecnología
@@ -129,8 +129,8 @@ export function Navbar() {
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <SheetHeader className="border-b border-border pb-4">
                   <SheetTitle className="flex items-center gap-3">
-                    <Image src="/images/logo.png" alt="INNOVA I&T" width={40} height={40} className="h-10 w-auto" />
-                    <span className="font-heading font-bold text-lg text-secondary dark:text-primary">INNOVA I&T</span>
+                    <Image src="/images/logo.png" alt="Devwolf I&T" width={40} height={40} className="h-10 w-auto" />
+                    <span className="font-heading font-bold text-lg text-secondary dark:text-primary">Devwolf I&T</span>
                   </SheetTitle>
                 </SheetHeader>
 

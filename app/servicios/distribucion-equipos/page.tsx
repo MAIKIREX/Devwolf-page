@@ -1,146 +1,21 @@
-import { Navbar } from "@/components/navbar/navbar"
-import { Footer } from "@/components/footer/footer"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Package, Laptop, Wrench, CheckCircle2 } from "lucide-react"
-import Link from "next/link"
-
-const subServices = [
-  {
-    icon: Laptop,
-    title: "Equipos Informáticos",
-    description: "Computadoras, laptops, periféricos y accesorios tecnológicos de última generación.",
-  },
-  {
-    icon: Package,
-    title: "Insumos Eléctricos",
-    description: "Materiales eléctricos, cables, tableros, protecciones y componentes industriales.",
-  },
-  {
-    icon: Wrench,
-    title: "Herramientas Técnicas",
-    description: "Equipos de construcción, herramientas especializadas y maquinaria profesional.",
-  },
-]
-
-const benefits = [
-  {
-    title: "Disponibilidad Inmediata",
-    description: "Stock permanente de productos de alta demanda con entrega rápida.",
-  },
-  {
-    title: "Asesoría Técnica",
-    description: "Personal capacitado para recomendar la mejor solución según tus necesidades.",
-  },
-  {
-    title: "Garantía y Postventa",
-    description: "Servicios de armado, mantenimiento y soporte técnico garantizado.",
-  },
-]
+import { Footer } from "@/components/layout/footer/footer"
+import { Navbar } from "@/components/layout/navbar/navbar"
+import { DistribucionEquiposBenefitsSection } from "@/features/servicios/distribucion-equipos/components/benefits-section"
+import { DistribucionEquiposCtaSection } from "@/features/servicios/distribucion-equipos/components/cta-section"
+import { DistribucionEquiposDescriptionSection } from "@/features/servicios/distribucion-equipos/components/description-section"
+import { DistribucionEquiposHeroSection } from "@/features/servicios/distribucion-equipos/components/hero-section"
+import { DistribucionEquiposSubservicesSection } from "@/features/servicios/distribucion-equipos/components/subservices-section"
 
 export default function DistribucionEquiposPage() {
   return (
     <main className="min-h-screen">
       <Navbar />
       <div className="pt-20">
-
-      {/* Hero Section */}
-      <section className="relative h-[40vh] flex items-center justify-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/technology-warehouse-with-computers-and-electronic.jpg')",
-          }}
-        />
-        <div className="absolute inset-0 bg-black/60 z-10" />
-        <div className="relative z-20 text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">Distribución de Equipos</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Insumos técnicos y equipos especializados para tu proyecto
-          </p>
-        </div>
-      </section>
-
-      {/* Description Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="prose prose-lg max-w-none">
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              Ofrecemos distribución de equipos informáticos, eléctricos y de construcción con disponibilidad inmediata
-              y precios competitivos. Nuestro catálogo incluye computadoras, laptops, periféricos y accesorios
-              tecnológicos de las principales marcas del mercado.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              Contamos con stock permanente de insumos eléctricos incluyendo cables, tableros, protecciones,
-              canalizaciones y componentes industriales. Todos nuestros productos cumplen con certificaciones de calidad
-              y normativas técnicas vigentes.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Además de la venta de equipos, brindamos servicios anexos de armado, instalación, mantenimiento y asesoría
-              técnica especializada. Nuestro enfoque está en la disponibilidad inmediata y el soporte postventa
-              garantizado para asegurar la satisfacción de nuestros clientes.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Sub-services Grid */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-secondary text-center mb-12">
-            Categorías de Productos
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {subServices.map((service) => {
-              const Icon = service.icon
-              return (
-                <Card key={service.title} className="h-full">
-                  <CardContent className="p-6 flex flex-col items-center text-center">
-                    <div className="mb-4 p-4 bg-primary/10 rounded-full">
-                      <Icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-heading font-semibold text-primary mb-3">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
-            ¿Por qué confiar en nosotros para este servicio?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="flex flex-col items-center text-center">
-                <CheckCircle2 className="h-12 w-12 mb-4" />
-                <h3 className="text-xl font-heading font-semibold mb-3">{benefit.title}</h3>
-                <p className="text-white/90 leading-relaxed">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-primary/90">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-6">
-            ¿Necesitas equipos o insumos técnicos?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Contáctanos y recibe asesoría personalizada sobre nuestros productos
-          </p>
-          <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8">
-            <Link href="/contacto">Solicitar cotización</Link>
-          </Button>
-        </div>
-      </section>
+        <DistribucionEquiposHeroSection />
+        <DistribucionEquiposDescriptionSection />
+        <DistribucionEquiposSubservicesSection />
+        <DistribucionEquiposBenefitsSection />
+        <DistribucionEquiposCtaSection />
       </div>
 
       <Footer />
