@@ -11,8 +11,8 @@ export default function HomePage() {
       <Navbar />
       <div className="pt-20">
         <HeroCarousel />
-        <ServicesGrid />
         <WhyChooseUs />
+        <ServicesGrid />
         <ContactCTA />
       </div>
       <Footer />
