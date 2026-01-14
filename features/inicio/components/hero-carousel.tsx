@@ -221,7 +221,7 @@ export function HeroCarousel() {
       className={cn(
         "relative overflow-hidden rounded-none", // ✅ sin bordes redondeados
         "border border-white/10 bg-neutral-950",
-        "shadow-[0_30px_90px_rgba(0,0,0,0.55)]"
+        "shadow-[0_30px_90px_rgba(0,0,0,0.55)] h-screen grid items-center"
       )}
     >
       {/* Background wipe */}

@@ -17,7 +17,7 @@ export function ContactoInfoSection() {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Building2 className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="font-heading text-lg font-semibold text-secondary mb-2">Empresa</h3>
+            <h3 className="font-heading text-lg font-semibold text-secondary mb-2 dark:text-foreground">Empresa</h3>
             <p className="text-muted-foreground text-sm">Devwolf INGENIERÍA & TECNOLOGÍA</p>
             <p className="text-muted-foreground text-sm mt-2">NIT: 680646031</p>
           </Card>
@@ -26,7 +26,7 @@ export function ContactoInfoSection() {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Phone className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="font-heading text-lg font-semibold text-secondary mb-2">WhatsApp / Celular</h3>
+            <h3 className="font-heading text-lg font-semibold text-secondary mb-2 dark:text-foreground">WhatsApp / Celular</h3>
             <a href="https://wa.me/59178855457" className="text-primary hover:underline font-medium">
               78855457
             </a>
@@ -36,7 +36,7 @@ export function ContactoInfoSection() {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Mail className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="font-heading text-lg font-semibold text-secondary mb-2">Email</h3>
+            <h3 className="font-heading text-lg font-semibold text-secondary mb-2 dark:text-foreground">Email</h3>
             <a
               href="mailto:innova.ingenieriaytecnologia@gmail.com"
               className="text-primary hover:underline text-sm break-all"
@@ -49,7 +49,7 @@ export function ContactoInfoSection() {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Clock className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="font-heading text-lg font-semibold text-secondary mb-2">Horario</h3>
+            <h3 className="font-heading text-lg font-semibold text-secondary mb-2 dark:text-foreground">Horario</h3>
             <p className="text-muted-foreground text-sm">Lun–Vie</p>
             <p className="text-muted-foreground text-sm font-medium">8:00–17:00</p>
             <p className="text-muted-foreground text-xs mt-2">Fines de semana con coordinación</p>

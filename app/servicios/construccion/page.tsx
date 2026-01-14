@@ -11,7 +11,7 @@ export default function ConstruccionPage() {
     <main className="min-h-screen">
       <Navbar />
 
-      <div className="pt-20">
+      <div className="">
         <ConstruccionHeroSection />
         <ConstruccionDescriptionSection />
         <ConstruccionSubservicesSection />

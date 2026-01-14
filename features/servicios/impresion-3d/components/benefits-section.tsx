@@ -26,7 +26,7 @@ export function Impresion3DBenefitsSection() {
           {benefits.map((benefit) => (
             <div key={benefit.title} className="flex flex-col items-center text-center">
               <CheckCircle2 className="h-12 w-12 mb-4" />
-              <h3 className="text-xl font-heading font-semibold mb-3">{benefit.title}</h3>
+              <h3 className="text-xl font-heading font-semibold mb-3 dark:text-foreground">{benefit.title}</h3>
               <p className="text-white/90 leading-relaxed">{benefit.description}</p>
             </div>
           ))}

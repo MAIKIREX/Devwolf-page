@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <div className="pt-20">
+      <div className="">
         <HeroCarousel />
         <WhyChooseUs />
         <ServicesGrid />

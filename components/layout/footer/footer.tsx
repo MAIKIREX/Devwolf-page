@@ -22,7 +22,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-heading font-semibold text-lg mb-4">Enlaces</h3>
+            <h3 className="font-heading font-semibold text-lg mb-4 dark:text-foreground">Enlaces</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-gray-300 hover:text-white transition-colors">
@@ -49,7 +49,7 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-heading font-semibold text-lg mb-4">Contacto</h3>
+            <h3 className="font-heading font-semibold text-lg mb-4 dark:text-foreground">Contacto</h3>
             <ul className="space-y-2 text-gray-300">
               <li>La Paz, Bolivia</li>
               <li>NIT: 680646031</li>

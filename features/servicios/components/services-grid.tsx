@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { motion } from "framer-motion"
+import * as React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Building2,
   Zap,
@@ -12,26 +12,63 @@ import {
   Box,
   ChevronLeft,
   ChevronRight,
-} from "lucide-react"
+} from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
 type Service = {
-  icon: React.ComponentType<{ className?: string }>
-  title: string
-  description: string
-  href: string
-  image: string
-  badge?: string
-}
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  badge?: string;
+};
+
+const hoverFill = {
+  rest: { scaleY: 0, opacity: 0 },
+  hover: { scaleY: 1, opacity: 1 },
+};
+
+const arrow = {
+  rest: { opacity: 0, y: 6, scale: 0.98 },
+  hover: { opacity: 1, y: 0, scale: 1 },
+};
+
+const img = {
+  rest: { scale: 1 },
+  hover: { scale: 1.05 },
+};
+
+// NUEVO: badge se va arriba y desaparece un poco
+const badgeMotion = {
+  rest: { y: 0, opacity: 1, scale: 1 },
+  hover: { y: -18, opacity: 0, scale: 0.98 },
+};
+
+// NUEVO: Icon aparece donde estaba el badge
+const badgeIconMotion = {
+  rest: { y: 10, opacity: 0, scale: 0.9 },
+  hover: { y: 0, opacity: 1, scale: 1 },
+};
+
+// NUEVO: texto cambia en hover
+const descMotion = {
+  rest: { opacity: 1, y: 0 },
+  hover: { opacity: 0, y: -4 },
+};
+const hoverDescMotion = {
+  rest: { opacity: 0, y: 6 },
+  hover: { opacity: 1, y: 0 },
+};
 
 export function ServicesGrid() {
   const services: Service[] = [
@@ -86,36 +123,35 @@ export function ServicesGrid() {
       image: "/images/3d-printer-creating-colorful-plastic-prototypes-an.jpg",
       badge: "Prototipos",
     },
-  ]
+  ];
 
-  const [api, setApi] = React.useState<CarouselApi | null>(null)
-  const [canPrev, setCanPrev] = React.useState(false)
-  const [canNext, setCanNext] = React.useState(false)
+  const [api, setApi] = React.useState<CarouselApi | null>(null);
+  const [canPrev, setCanPrev] = React.useState(false);
+  const [canNext, setCanNext] = React.useState(false);
 
   React.useEffect(() => {
-    if (!api) return
+    if (!api) return;
 
     const update = () => {
-      setCanPrev(api.canScrollPrev())
-      setCanNext(api.canScrollNext())
-    }
+      setCanPrev(api.canScrollPrev());
+      setCanNext(api.canScrollNext());
+    };
 
-    update()
-    api.on("select", update)
-    api.on("reInit", update)
+    update();
+    api.on("select", update);
+    api.on("reInit", update);
 
     return () => {
-      api.off("select", update)
-      api.off("reInit", update)
-    }
-  }, [api])
+      api.off("select", update);
+      api.off("reInit", update);
+    };
+  }, [api]);
 
   return (
     <section
       id="services"
-      className="relative overflow-hidden bg-primary py-20 text-primary-foreground sm:py-24"
+      className="relative overflow-hidden bg-[#162340] py-20 text-primary-foreground sm:py-24"
     >
-      {/* background details (subtle) */}
       <div className="pointer-events-none absolute inset-0 opacity-70 [background:radial-gradient(900px_520px_at_20%_20%,rgba(255,255,255,0.12),transparent_60%)]" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
 
@@ -134,8 +170,8 @@ export function ServicesGrid() {
               Soluciones integrales en ingeniería y tecnología
             </h2>
             <p className="mt-3 max-w-2xl text-sm text-primary-foreground/80 sm:text-base">
-              Refacciones, instalaciones eléctricas, redes, distribución, software y
-              fabricación 3D para impulsar tu negocio.
+              Refacciones, instalaciones eléctricas, redes, distribución,
+              software y fabricación 3D para impulsar tu negocio.
             </p>
           </motion.div>
 
@@ -178,77 +214,125 @@ export function ServicesGrid() {
         >
           <CarouselContent className="-ml-4">
             {services.map((service, index) => {
-              const Icon = service.icon
+              const Icon = service.icon;
+
               return (
                 <CarouselItem
                   key={service.href}
                   className={cn(
                     "pl-4",
-                    // mobile-first: 1 por vista
                     "basis-full",
-                    // sm: 2
                     "sm:basis-1/2",
-                    // lg: 3
                     "lg:basis-1/3",
-                    // xl: 4 (similar al ejemplo)
                     "xl:basis-1/4"
                   )}
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: false, amount: 0.3 }}
                     transition={{ delay: index * 0.06 }}
                     className="h-full"
                   >
                     <Link href={service.href} className="block h-full">
-                      <Card className="group h-full overflow-hidden border-white/10 bg-card text-card-foreground shadow-none transition-shadow hover:shadow-xl">
-                        {/* Image */}
-                        <div className="relative h-44 overflow-hidden sm:h-48">
-                          <img
-                            src={service.image || "/placeholder.svg"}
-                            alt={service.title}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            loading="lazy"
-                          />
-                          {/* Badge */}
-                          {service.badge ? (
-                            <div className="absolute right-4 top-4 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-                              {service.badge}
-                            </div>
-                          ) : null}
+                      <motion.div
+                        initial="rest"
+                        whileHover="hover"
+                        animate="rest"
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        className="h-full"
+                      >
+                        <Card
+                          className={cn(
+                            "group relative h-full overflow-hidden border-0",
+                            "ring-1 ring-black/10 p-0 bg-transparent",
+                            "shadow-[0_25px_80px_-40px_rgba(0,0,0,0.35)]"
+                          )}
+                        >
+                          <div className="relative min-h-[360px] bg-zinc-100">
+                            {/* Imagen */}
+                            <motion.img
+                              variants={img}
+                              src={service.image || "/placeholder.svg"}
+                              alt={service.title}
+                              loading="lazy"
+                              className="absolute inset-0 h-full w-full object-cover will-change-transform [transform:translateZ(0)]"
+                            />
 
-                          {/* Soft overlay for readability */}
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-                        </div>
+                            {/* Overlay base */}
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
 
-                        <CardContent className="p-5 sm:p-6">
-                          <div className="flex items-start gap-3">
-                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-secondary/15 text-secondary ring-1 ring-border">
-                              <Icon className="h-5 w-5" />
-                            </div>
-                            <div className="min-w-0">
-                              <h3 className="text-lg font-bold leading-snug sm:text-xl">
+                            {/* Hover “pintado” */}
+                            <motion.div
+                              variants={hoverFill}
+                              style={{ transformOrigin: "bottom" }}
+                              className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-[#3931a0] via-[#3931a0]/45 to-transparent"
+                            />
+
+                            {/* Glow sutil */}
+                            <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background:radial-gradient(700px_260px_at_20%_80%,rgba(57,49,160,0.35),transparent_60%)]" />
+
+                            {/* Badge -> sale hacia arriba en hover */}
+                            {service.badge ? (
+                              <motion.div
+                                variants={badgeMotion}
+                                className="absolute left-4 top-4 z-20 rounded-full bg-[#3931a0] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm"
+                              >
+                                {service.badge}
+                              </motion.div>
+                            ) : null}
+
+                            {/* Icon en la posición del badge (entra en hover) */}
+                            <motion.div
+                              variants={badgeIconMotion}
+                              className={cn(
+                                "absolute left-4 top-4 z-20 grid h-10 w-10 place-items-center rounded-2xl",
+                                "bg-white/10 backdrop-blur-md ring-1 ring-white/15"
+                              )}
+                            >
+                              <Icon className="h-5 w-5 text-white" />
+                            </motion.div>
+
+                            {/* Bottom content */}
+                            <div className="absolute inset-x-0 bottom-0 z-20 p-5 sm:p-6">
+                              <h3 className="text-[22px] font-semibold leading-tight tracking-tight text-white dark:text-foreground">
                                 {service.title}
                               </h3>
-                              <p className="mt-2 text-sm text-muted-foreground">
-                                {service.description}
-                              </p>
-                            </div>
-                          </div>
 
-                          <div className="mt-5 flex items-center justify-between">
-                            <span className="text-sm font-semibold text-secondary">
-                              Ver más
-                            </span>
-                            <ChevronRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                              {/* Description normal */}
+                              <motion.p
+                                variants={descMotion}
+                                className="mt-2 text-sm font-medium uppercase tracking-wider text-white/70"
+                              >
+                                Soluciones innovadoras
+                              </motion.p>
+
+                              {/* Description hover */}
+                              <motion.p
+                                variants={hoverDescMotion}
+                                className="mt-2 text-sm font-semibold uppercase tracking-wider text-white"
+                              >
+                                Explorar servicios
+                              </motion.p>
+                            </div>
+
+                            {/* Icono ">" abajo a la derecha */}
+                            <motion.div
+                              variants={arrow}
+                              className={cn(
+                                "absolute bottom-4 right-4 z-20 grid h-11 w-11 place-items-center rounded-full",
+                                "bg-white/10 backdrop-blur-md ring-1 ring-white/15"
+                              )}
+                            >
+                              <ChevronRight className="h-5 w-5 text-white" />
+                            </motion.div>
                           </div>
-                        </CardContent>
-                      </Card>
+                        </Card>
+                      </motion.div>
                     </Link>
                   </motion.div>
                 </CarouselItem>
-              )
+              );
             })}
           </CarouselContent>
 
@@ -305,5 +389,5 @@ export function ServicesGrid() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

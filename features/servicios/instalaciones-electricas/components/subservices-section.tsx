@@ -35,7 +35,7 @@ export function InstalacionesElectricasSubservicesSection() {
                   <div className="mb-4 p-4 bg-primary/10 rounded-full">
                     <Icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-heading font-semibold text-primary mb-3">{service.title}</h3>
+                  <h3 className="text-xl font-heading font-semibold text-primary mb-3 dark:text-foreground">{service.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                 </CardContent>
               </Card>

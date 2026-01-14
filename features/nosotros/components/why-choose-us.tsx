@@ -84,7 +84,7 @@ export function WhyChooseUs() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-heading font-semibold mb-3">
+                  <h3 className="text-xl font-heading font-semibold mb-3 dark:text-foreground">
                     {reason.title}
                   </h3>
                   <p className="text-neutral-600 leading-relaxed">

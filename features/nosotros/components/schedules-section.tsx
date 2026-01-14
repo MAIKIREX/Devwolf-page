@@ -8,14 +8,14 @@ export function NosotrosSchedulesSection() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <Clock className="h-12 w-12 mx-auto mb-4 text-primary" />
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-secondary mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-secondary mb-4 dark:text-foreground">
               Modalidades de Trabajo y Horarios
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="p-8">
-              <h3 className="font-heading text-2xl font-semibold text-secondary mb-6">Modalidades de Servicio</h3>
+              <h3 className="font-heading text-2xl font-semibold text-secondary mb-6 dark:text-foreground">Modalidades de Servicio</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
@@ -60,7 +60,7 @@ export function NosotrosSchedulesSection() {
             </Card>
 
             <Card className="p-8">
-              <h3 className="font-heading text-2xl font-semibold text-secondary mb-6">Horarios de Atención</h3>
+              <h3 className="font-heading text-2xl font-semibold text-secondary mb-6 dark:text-foreground">Horarios de Atención</h3>
               <div className="space-y-6">
                 <div>
                   <div className="flex items-center gap-3 mb-3">

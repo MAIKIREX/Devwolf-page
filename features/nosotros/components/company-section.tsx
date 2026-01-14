@@ -2,12 +2,12 @@ import { Users } from "lucide-react"
 
 export function NosotrosCompanySection() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 h-screen grid items-center bg-[#14203B]">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <Users className="h-8 w-8 text-primary" />
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-secondary">Nuestra Empresa</h2>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary dark:text-foreground">Nuestra Empresa</h2>
           </div>
           <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
             <p>

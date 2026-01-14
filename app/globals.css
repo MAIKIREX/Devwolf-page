@@ -4,88 +4,127 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light mode - Devwolf brand colors */
-  --background: oklch(1 0 0); /* Pure White */
-  --foreground: oklch(0.25 0 0); /* Graphite Gray #1E1E1E */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.25 0 0);
+  /* Light mode - Devwolf (custom palette) */
+  --background: oklch(1 0 0); /* #FFFFFF */
+  --foreground: oklch(0.300 0.104 261.3); /* #0C2A61 */
+
+  --card: oklch(1 0 0); /* #FFFFFF */
+  --card-foreground: oklch(0.300 0.104 261.3); /* #0C2A61 */
+
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0 0);
-  --primary: oklch(0.55 0.18 245); /* Electric Blue #0073E6 */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.25 0 0); /* Graphite Gray */
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.65 0.18 55); /* Orange accent #FF8C00 */
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
+  --popover-foreground: oklch(0.300 0.104 261.3);
+
+  /* Brand blues */
+  --primary: oklch(0.300 0.104 261.3); /* #0C2A61 */
+  --primary-foreground: oklch(1 0 0); /* #FFFFFF */
+
+  --secondary: oklch(0.434 0.136 255.9); /* #0F4F99 */
+  --secondary-foreground: oklch(1 0 0); /* #FFFFFF */
+
+  /* Cream as muted surface */
+  --muted: oklch(0.919 0.045 46.0); /* #FFDCCC */
+  --muted-foreground: oklch(0.434 0.136 255.9); /* #0F4F99 */
+
+  /* Mint accent */
+  --accent: oklch(0.854 0.112 172.2); /* #7AE7C7 */
+  --accent-foreground: oklch(0.300 0.104 261.3); /* #0C2A61 */
+
+  /* Red accent as destructive */
+  --destructive: oklch(0.599 0.237 19.0); /* #EC0B43 */
+  --destructive-foreground: oklch(1 0 0); /* #FFFFFF */
+
+  /* Neutrals (kept clean) */
   --border: oklch(0.92 0 0);
   --input: oklch(0.92 0 0);
-  --ring: oklch(0.55 0.18 245);
-  --chart-1: oklch(0.55 0.18 245);
-  --chart-2: oklch(0.65 0.18 55);
-  --chart-3: oklch(0.25 0 0);
-  --chart-4: oklch(0.7 0.15 200);
-  --chart-5: oklch(0.6 0.12 280);
+
+  --ring: oklch(0.300 0.104 261.3); /* #0C2A61 */
+
+  /* Charts (mapped to your palette) */
+  --chart-1: oklch(0.300 0.104 261.3); /* primary */
+  --chart-2: oklch(0.434 0.136 255.9); /* secondary */
+  --chart-3: oklch(0.599 0.237 19.0);  /* red */
+  --chart-4: oklch(0.854 0.112 172.2); /* mint */
+  --chart-5: oklch(0.919 0.045 46.0);  /* cream */
+
   --radius: 0.5rem;
+
+  /* Sidebar */
   --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.25 0 0);
-  --sidebar-primary: oklch(0.55 0.18 245);
+  --sidebar-foreground: oklch(0.300 0.104 261.3); /* #0C2A61 */
+  --sidebar-primary: oklch(0.300 0.104 261.3); /* #0C2A61 */
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.95 0 0);
-  --sidebar-accent-foreground: oklch(0.25 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.55 0.18 245);
+  --sidebar-accent: oklch(0.919 0.045 46.0); /* #FFDCCC */
+  --sidebar-accent-foreground: oklch(0.300 0.104 261.3); /* #0C2A61 */
+  --sidebar-border: oklch(0.92 0 0);
+  --sidebar-ring: oklch(0.300 0.104 261.3); /* #0C2A61 */
 }
 
 .dark {
-  /* Dark mode - Carefully crafted palette for Devwolf brand */
-  --background: oklch(0.12 0.01 245); /* Deep blue-tinted black */
-  --foreground: oklch(0.97 0 0); /* Almost white */
-  --card: oklch(0.17 0.01 245); /* Slightly lighter blue-black */
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.15 0.01 245);
-  --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.62 0.2 245); /* Brighter electric blue for dark mode */
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.22 0.01 245); /* Dark blue-gray */
-  --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.2 0.01 245);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.72 0.2 55); /* Vibrant orange for dark mode */
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.55 0.25 27);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.25 0.01 245);
-  --input: oklch(0.25 0.01 245);
-  --ring: oklch(0.62 0.2 245);
-  --chart-1: oklch(0.62 0.2 245);
-  --chart-2: oklch(0.72 0.2 55);
-  --chart-3: oklch(0.85 0 0);
-  --chart-4: oklch(0.7 0.15 200);
-  --chart-5: oklch(0.68 0.14 280);
-  --sidebar: oklch(0.14 0.01 245);
-  --sidebar-foreground: oklch(0.97 0 0);
-  --sidebar-primary: oklch(0.62 0.2 245);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.2 0.01 245);
-  --sidebar-accent-foreground: oklch(0.97 0 0);
-  --sidebar-border: oklch(0.25 0.01 245);
-  --sidebar-ring: oklch(0.62 0.2 245);
+  /* Dark mode - Devwolf (Corporate / sober) */
+  --background: oklch(0.146 0.018 266.8); /* #070A12 */
+  --foreground: oklch(0.955 0.021 268.4); /* #EAF0FF */
+
+  --card: oklch(0.185 0.035 265.3); /* #0B1222 */
+  --card-foreground: oklch(0.955 0.021 268.4); /* #EAF0FF */
+
+  --popover: oklch(0.185 0.035 265.3); /* #0B1222 */
+  --popover-foreground: oklch(0.955 0.021 268.4); /* #EAF0FF */
+
+  /* Brand blues (visible on dark) */
+  --primary: oklch(0.488 0.129 259.2); /* #2F5EA8 */
+  --primary-foreground: oklch(0.955 0.021 268.4); /* #EAF0FF */
+
+  /* Secondary as sober surface button */
+  --secondary: oklch(0.226 0.050 264.2); /* #101B33 */
+  --secondary-foreground: oklch(0.955 0.021 268.4); /* #EAF0FF */
+
+  --muted: oklch(0.226 0.050 264.2); /* #101B33 */
+  --muted-foreground: oklch(0.686 0.047 265.4); /* #8C9AB8 */
+
+  /* Accent mint (controlled) */
+  --accent: oklch(0.734 0.108 176.6); /* #4FBFA7 */
+  --accent-foreground: oklch(0.146 0.018 266.8); /* #070A12 */
+
+  /* Destructive red (controlled) */
+  --destructive: oklch(0.617 0.206 15.8); /* #E63B5A */
+  --destructive-foreground: oklch(0.955 0.021 268.4); /* #EAF0FF */
+
+  --border: oklch(0.292 0.067 265.0); /* #1B2A4D */
+  --input: oklch(0.292 0.067 265.0);  /* #1B2A4D */
+
+  /* Ring a bit brighter for focus visibility */
+  --ring: oklch(0.574 0.138 255.7); /* #3B79C8 */
+
+  /* Charts (sober mapping) */
+  --chart-1: oklch(0.488 0.129 259.2); /* primary */
+  --chart-2: oklch(0.574 0.138 255.7); /* primary-2 */
+  --chart-3: oklch(0.617 0.206 15.8);  /* red */
+  --chart-4: oklch(0.734 0.108 176.6); /* mint */
+  --chart-5: oklch(0.844 0.047 46.8);  /* warm highlight #E7C3B2 */
+
+  /* Sidebar */
+  --sidebar: oklch(0.185 0.035 265.3); /* #0B1222 */
+  --sidebar-foreground: oklch(0.955 0.021 268.4); /* #EAF0FF */
+  --sidebar-primary: oklch(0.488 0.129 259.2); /* #2F5EA8 */
+  --sidebar-primary-foreground: oklch(0.955 0.021 268.4); /* #EAF0FF */
+  --sidebar-accent: oklch(0.226 0.050 264.2); /* #101B33 */
+  --sidebar-accent-foreground: oklch(0.816 0.039 265.8); /* #B7C3DD */
+  --sidebar-border: oklch(0.292 0.067 265.0); /* #1B2A4D */
+  --sidebar-ring: oklch(0.574 0.138 255.7); /* #3B79C8 */
 }
 
 @theme inline {
   /* Updated fonts to Poppins and Roboto */
   --font-sans: "Roboto", "system-ui", "sans-serif";
   --font-heading: "Poppins", "system-ui", "sans-serif";
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -96,18 +135,22 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
