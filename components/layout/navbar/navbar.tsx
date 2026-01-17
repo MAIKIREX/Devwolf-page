@@ -8,7 +8,6 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { ThemeToggle } from "@/components/layout/theme-toggle"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button"
 
 const services = [
-  { name: "Construcción", href: "/servicios/construccion" },
+  { name: "Construcción", href: "/servicios/construccion-obra-liviana" },
   { name: "Instalaciones Eléctricas", href: "/servicios/instalaciones-electricas" },
   { name: "Redes & Telecomunicaciones", href: "/servicios/redes-telecomunicaciones" },
   { name: "Distribución de Equipos", href: "/servicios/distribucion-equipos" },
@@ -82,13 +81,13 @@ export function Navbar() {
           <div className="relative flex items-center justify-between gap-3 px-4 py-4 md:px-6">
             {/* Brand */}
             <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/10 ring-1 ring-white/10 overflow-hidden">
+              <span className="grid h-11 w-11 place-items-center overflow-hidden">
                 <Image
-                  src="/images/logo4.png"
+                  src="/images/logoV10.svg"
                   alt="Devwolf I&T"
-                  width={44}
-                  height={44}
-                  className="h-full w-full object-contain"
+                  width={64}
+                  height={64}
+                  className="h-11 w-11 object-contain "
                 />
               </span>
               <div className="leading-tight">
@@ -167,11 +166,6 @@ export function Navbar() {
 
             {/* Right */}
             <div className="flex items-center gap-2">
-              {/* Theme toggle (kept from original) */}
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-white/10 ring-1 ring-white/10">
-                <ThemeToggle />
-              </div>
-
               {/* CTA (desktop) */}
               <Button
                 asChild

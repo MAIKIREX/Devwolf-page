@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 export function NosotrosCtaSection() {
@@ -17,7 +17,7 @@ export function NosotrosCtaSection() {
             Procesos claros · Entregables medibles · Resultados
           </p>
 
-          <h2 className="font-heading text-3xl md:text-5xl font-bold leading-tight tracking-tight">
+          <h2 className="text-3xl md:text-5xl leading-tight tracking-tight font-light">
             ¿Quieres conocer más sobre nuestros procesos y entregables?
           </h2>
 
@@ -26,14 +26,22 @@ export function NosotrosCtaSection() {
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="h-12 px-8 text-base font-semibold shadow-lg shadow-black/15 hover:shadow-xl transition-shadow"
-            >
-              <Link href="/contacto">Agendar visita</Link>
-            </Button>
+            <Link href="/contacto" className="mx-auto">
+          <button
+            type="button"
+            className="group flex cursor-pointer items-center gap-3 rounded-full border border-border bg-card px-5 py-3 text-foreground shadow-sm transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md hover:bg-foreground hover:text-background"
+          >
+            <div className="size-2 rounded-full bg-foreground transition-all duration-200 ease-in-out group-hover:flex group-hover:size-8 group-hover:items-center group-hover:justify-center group-hover:bg-background">
+              <span className="hidden transition-all duration-200 ease-in-out group-hover:flex group-hover:text-xl">
+                <ArrowRight className="transition-transform duration-200 group-active:-rotate-45 text-white" />
+              </span>
+            </div>
+
+            <p className="transition-all duration-200 ease-in-out group-hover:font-semibold">
+              Agendar una visita
+            </p>
+          </button>
+        </Link>
           </div>
         </div>
       </div>

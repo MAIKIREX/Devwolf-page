@@ -8,24 +8,22 @@ import { NosotrosHeroSection } from "@/features/nosotros/components/hero-section
 import { NosotrosMethodologySection } from "@/features/nosotros/components/methodology-section";
 import { NosotrosQualitySection } from "@/features/nosotros/components/quality-section";
 import { NosotrosSchedulesSection } from "@/features/nosotros/components/schedules-section";
-import Parallax from "@/components/scroll/ParallaxSplit";
+import PushScaleWrapper from "@/components/scroll/PushScaleWrapper";
 
 export default function NosotrosPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <div className="">
         <NosotrosHeroSection />
-          <NosotrosCompanySection />
-
+        <NosotrosCompanySection />
+        <PushScaleWrapper>
           <NosotrosMethodologySection />
-          <Parallax travel="100%">
-
-            <NosotrosQualitySection />
-            <NosotrosDocumentationSection />
-            <NosotrosSchedulesSection />
-            <NosotrosCoverageSection />
-          </Parallax>
+          <NosotrosQualitySection />
+          <NosotrosDocumentationSection />
+          <NosotrosSchedulesSection />
+          <NosotrosCoverageSection />
+        </PushScaleWrapper>
         <NosotrosCtaSection />
       </div>
       <Footer />

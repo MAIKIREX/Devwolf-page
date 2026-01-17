@@ -21,11 +21,16 @@ export function LevantamientoTecnicoIconLoop({
   React.useEffect(() => {
     let alive = true
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+    const nextFrame = () => new Promise((r) => requestAnimationFrame(() => r(undefined)))
 
     ;(async () => {
+      await nextFrame()
+      if (!alive) return
       while (alive) {
+        if (!alive) break
         await controls.start("show")
         await sleep(holdMs)
+        if (!alive) break
         await controls.start("hidden")
         await sleep(gapMs)
       }
@@ -33,6 +38,7 @@ export function LevantamientoTecnicoIconLoop({
 
     return () => {
       alive = false
+      controls.stop()
     }
   }, [controls, holdMs, gapMs])
 

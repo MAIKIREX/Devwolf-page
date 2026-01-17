@@ -10,7 +10,7 @@ export default function ContactoPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="pt-20">
+      <div className="">
         <ContactoHeroSection />
         <ContactoInfoSection />
         <ContactoFormSection />

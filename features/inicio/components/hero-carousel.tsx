@@ -13,12 +13,12 @@ import {
   Package,
 } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
 import {
   Carousel,
   CarouselApi,
@@ -44,10 +44,7 @@ function clamp(n: number, min: number, max: number) {
 function getDirection(prev: number, next: number, len: number) {
   if (next === prev) return "forward"
   const isNextForward = next === (prev + 1) % len
-  const isNextBackward = next === (prev - 1 + len) % len
-  if (isNextForward) return "forward"
-  if (isNextBackward) return "backward"
-  return next > prev ? "forward" : "backward"
+  return isNextForward ? "forward" : "backward"
 }
 
 export function HeroCarousel() {
@@ -57,21 +54,19 @@ export function HeroCarousel() {
         id: "construccion",
         label: "Construcción",
         title: "Construcción y Obra Liviana",
-        description:
-          "Refacciones, remodelaciones y obra liviana con estándares de calidad.",
+        description: "Refacciones, remodelaciones y obra liviana con estándares de calidad.",
         cta: "Ver servicios",
-        image: "/images/construction-site-with-modern-building.jpg",
-        link: "/servicios/construccion",
+        image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768498555/construction-site-with-modern-building-and-workers_qfhx3d.jpg",
+        link: "/servicios/construccion-obra-liviana",
         Icon: Building2,
       },
       {
         id: "electrico",
         label: "Eléctrico",
         title: "Instalaciones Eléctricas",
-        description:
-          "Iluminación, tableros, control de motores y automatización industrial.",
+        description: "Iluminación, tableros, control de motores y automatización industrial.",
         cta: "Ver servicios",
-        image: "/images/electrical-installation-industrial-panel.jpg",
+        image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768498996/electrical-installation-industrial-panel_a9fihp.jpg",
         link: "/servicios/instalaciones-electricas",
         Icon: Factory,
       },
@@ -79,10 +74,9 @@ export function HeroCarousel() {
         id: "redes",
         label: "Redes",
         title: "Redes & Telecomunicaciones",
-        description:
-          "Cableado estructurado, CCTV, VLANs y conectividad segura.",
+        description: "Cableado estructurado, CCTV, VLANs y conectividad segura.",
         cta: "Ver servicios",
-        image: "/images/network-server-room-data-center.jpg",
+        image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499001/network-server-room-data-center_rwaivg.jpg",
         link: "/servicios/redes-telecomunicaciones",
         Icon: Radio,
       },
@@ -90,10 +84,9 @@ export function HeroCarousel() {
         id: "distribucion",
         label: "Distribución",
         title: "Distribución de Equipos",
-        description:
-          "Insumos técnicos, equipos informáticos y herramientas especializadas.",
+        description: "Insumos técnicos, equipos informáticos y herramientas especializadas.",
         cta: "Ver servicios",
-        image: "/images/warehouse-with-technology-equipment-and-computers.jpg",
+        image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499010/warehouse-with-technology-equipment-and-computers_q8t34g.jpg",
         link: "/servicios/distribucion-equipos",
         Icon: Package,
       },
@@ -103,7 +96,7 @@ export function HeroCarousel() {
         title: "Software e Integraciones",
         description: "Desarrollo web, APIs, automatización y monitoreo.",
         cta: "Ver servicios",
-        image: "/images/software-coding-screen.png",
+        image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499005/software-coding-screen_fmoefd.png",
         link: "/servicios/software-devops",
         Icon: Code2,
       },
@@ -111,10 +104,9 @@ export function HeroCarousel() {
         id: "impresion",
         label: "Impresión 3D",
         title: "Impresión 3D",
-        description:
-          "Diseño y fabricación de piezas, señalética y elementos personalizados.",
+        description: "Diseño y fabricación de piezas, señalética y elementos personalizados.",
         cta: "Ver servicios",
-        image: "/images/3d-printer-creating-colorful-plastic-prototypes-an.jpg",
+        image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768498991/3d-printer-manufacturing-custom-parts-closeup_g4pbug.jpg",
         link: "/servicios/impresion-3d",
         Icon: Printer,
       },
@@ -123,21 +115,16 @@ export function HeroCarousel() {
   )
 
   const INTERVAL_MS = 6000
-
   const [active, setActive] = React.useState(0)
   const [baseIdx, setBaseIdx] = React.useState(0)
   const [dir, setDir] = React.useState<"forward" | "backward">("forward")
-
   const [api, setApi] = React.useState<CarouselApi | null>(null)
-
+  
   const activeRef = React.useRef(active)
-  React.useEffect(() => {
-    activeRef.current = active
-  }, [active])
+  React.useEffect(() => { activeRef.current = active }, [active])
 
   const timerRef = React.useRef<number | null>(null)
   const skipNextSelectRef = React.useRef(false)
-
   const progressControls = useAnimationControls()
 
   const restartProgress = React.useCallback(() => {
@@ -146,330 +133,183 @@ export function HeroCarousel() {
       scaleX: 1,
       transition: { duration: INTERVAL_MS / 1000, ease: "linear" },
     })
-  }, [progressControls, INTERVAL_MS])
-
-  const clearTimer = React.useCallback(() => {
-    if (timerRef.current) window.clearTimeout(timerRef.current)
-    timerRef.current = null
-  }, [])
+  }, [progressControls])
 
   const scheduleNext = React.useCallback(() => {
-    clearTimer()
+    if (timerRef.current) window.clearTimeout(timerRef.current)
     timerRef.current = window.setTimeout(() => {
-      if (!api) return
-      api.scrollNext()
+      api?.scrollNext()
     }, INTERVAL_MS)
-  }, [api, clearTimer, INTERVAL_MS])
+  }, [api])
 
-  const applyIndex = React.useCallback(
-    (next: number) => {
-      const len = services.length
-      const safeNext = clamp(next, 0, len - 1)
-      const prev = activeRef.current
-
-      setDir(getDirection(prev, safeNext, len))
-      setActive(safeNext)
-
-      restartProgress()
-      scheduleNext()
-    },
-    [restartProgress, scheduleNext, services.length]
-  )
+  const applyIndex = React.useCallback((next: number) => {
+    const len = services.length
+    const safeNext = clamp(next, 0, len - 1)
+    setDir(getDirection(activeRef.current, safeNext, len))
+    setActive(safeNext)
+    restartProgress()
+    scheduleNext()
+  }, [restartProgress, scheduleNext, services.length])
 
   React.useEffect(() => {
     if (!api) return
-
+    applyIndex(api.selectedScrollSnap())
     const onSelect = () => {
-      const next = api.selectedScrollSnap()
       if (skipNextSelectRef.current) {
         skipNextSelectRef.current = false
         return
       }
-      applyIndex(next)
+      applyIndex(api.selectedScrollSnap())
     }
-
+    const onReInit = () => {
+      applyIndex(api.selectedScrollSnap())
+    }
     api.on("select", onSelect)
-    api.on("reInit", onSelect)
-    applyIndex(api.selectedScrollSnap())
-
+    api.on("reInit", onReInit)
     return () => {
       api.off("select", onSelect)
-      api.off("reInit", onSelect)
+      api.off("reInit", onReInit)
     }
   }, [api, applyIndex])
 
-  React.useEffect(() => {
-    return () => clearTimer()
-  }, [clearTimer])
-
   const goTo = (nextIdx: number) => {
     if (!api) return
-    const next = clamp(nextIdx, 0, services.length - 1)
     skipNextSelectRef.current = true
-    api.scrollTo(next)
-    applyIndex(next)
+    api.scrollTo(nextIdx)
+    applyIndex(nextIdx)
   }
 
   const activeService = services[active]
   const baseService = services[baseIdx]
-
-  const incomingInitialClip =
-    dir === "forward" ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)"
+  const incomingInitialClip = dir === "forward" ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)"
 
   return (
-    <Card
-      className={cn(
-        "relative overflow-hidden rounded-none", // ✅ sin bordes redondeados
-        "border border-white/10 bg-neutral-950",
-        "shadow-[0_30px_90px_rgba(0,0,0,0.55)] h-screen grid items-center"
-      )}
-    >
-      {/* Background wipe */}
-      <div className="absolute inset-0">
+    <Card className="relative min-h-screen w-full overflow-hidden rounded-none border-none bg-neutral-950 flex items-center">
+      
+      {/* CAPA DE FONDO (IMAGEN) */}
+      <div className="absolute inset-0 z-0">
         <div className="absolute inset-0">
-          <img
+          <Image
             src={baseService.image}
             alt={baseService.title}
-            className="h-full w-full object-cover"
-            loading="lazy"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
           />
         </div>
-
-        <AnimatePresence initial={false} mode="sync">
+        <AnimatePresence initial={false}>
           <motion.div
             key={activeService.id}
             className="absolute inset-0"
-            style={{ willChange: "clip-path" }}
             initial={{ clipPath: incomingInitialClip }}
             animate={{ clipPath: "inset(0 0% 0 0)" }}
-            exit={{ opacity: 1 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            onAnimationComplete={() => {
-              setBaseIdx((currentBase) => {
-                if (activeRef.current === active) return active
-                return currentBase
-              })
-            }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            onAnimationComplete={() => setBaseIdx(active)}
           >
-            <img
+            <Image
               src={activeService.image}
               alt={activeService.title}
-              className="h-full w-full object-cover"
-              loading="lazy"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
           </motion.div>
         </AnimatePresence>
-
-        {/* Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/55 to-black/75" />
-        <div className="absolute inset-0 [background:radial-gradient(900px_520px_at_25%_28%,rgba(255,255,255,0.11),transparent_60%)] opacity-70" />
+        
+        {/* Overlays para legibilidad */}
+        <div className="absolute inset-0 bg-black/60 md:bg-gradient-to-r md:from-black/90 md:via-black/40 md:to-transparent" />
       </div>
 
-      {/* Layout: mobile-first */}
-      <div
-        className={cn(
-          "relative flex flex-col gap-7",
-          "px-4 py-10 sm:px-6",
-          "md:grid md:gap-10 md:px-10 md:py-16",
-          "md:grid-cols-[320px_1fr]"
-        )}
-      >
-        {/* RIGHT (content) first on mobile */}
-        <div className="order-1 md:order-2 md:self-center">
-          <Carousel
-            setApi={setApi}
-            opts={{ loop: true, align: "start" }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {services.map((s) => (
-                <CarouselItem key={s.id} className="basis-full">
-                  <div className="max-w-2xl">
-                    <Badge className="gap-2 rounded-full bg-white/10 px-3 py-2 text-xs font-semibold text-white/80 ring-1 ring-white/10 hover:bg-white/10">
-                      <s.Icon className="h-4 w-4" />
-                      Servicios integrales
-                    </Badge>
-
-                    <h1 className="mt-5 text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-6xl">
-                      {s.title}
-                    </h1>
-
-                    <p className="mt-4 max-w-xl text-pretty text-sm text-white/70 sm:text-base">
-                      {s.description}
-                    </p>
-
-                    <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                      <Button
-                        asChild
-                        className={cn(
-                          "h-11 w-full rounded-xl bg-white px-5 text-neutral-900 hover:bg-white/95",
-                          "sm:w-auto"
-                        )}
-                      >
-                        <Link href={s.link}>
-                          {s.cta}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-
-                      <Button
-                        asChild
-                        variant="secondary"
-                        className={cn(
-                          "h-11 w-full rounded-xl bg-white/10 px-5 text-white ring-1 ring-white/15 hover:bg-white/15",
-                          "sm:w-auto"
-                        )}
-                      >
-                        <Link href="/contacto">
-                          Cotizar ahora
-                          <ArrowRight className="ml-2 h-4 w-4 opacity-80" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
-
-        {/* LEFT rail: compact chips on mobile, list on md+ */}
-        <div className="order-2 md:order-1 md:self-center">
-          <div className="flex items-center justify-between gap-4">
-            <div className="text-sm font-semibold text-white/85">Servicios</div>
-
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] text-white/55">Auto</span>
-              <div className="h-1.5 w-24 overflow-hidden rounded-full bg-white/10 ring-1 ring-white/10 sm:w-28">
-                <motion.div
-                  className="h-full w-full origin-left bg-white/70"
-                  initial={{ scaleX: 0 }}
-                  animate={progressControls}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile: chips horizontales (más limpio) */}
-          <div className="mt-4 md:hidden">
-            <div className="-mx-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="flex gap-2">
-                {services.map((s, idx) => {
-                  const selected = idx === active
-                  return (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => goTo(idx)}
-                      className={cn(
-                        "group flex items-center gap-2 whitespace-nowrap",
-                        "px-3 py-2",
-                        "border border-white/10 bg-white/0 text-left",
-                        "transition",
-                        selected ? "bg-white/14" : "hover:bg-white/10"
-                      )}
-                    >
-                      <span
-                        className={cn(
-                          "grid h-9 w-9 place-items-center",
-                          "bg-white/10 text-white ring-1 ring-white/10",
-                          selected && "bg-white text-neutral-950 ring-white/20"
-                        )}
-                      >
-                        <s.Icon className="h-4 w-4" />
-                      </span>
-
-                      <span className="text-sm font-semibold text-white/85">
-                        {s.label}
-                      </span>
-
-                      <ChevronRight
-                        className={cn(
-                          "ml-1 h-4 w-4 transition",
-                          selected ? "opacity-80" : "opacity-30 group-hover:opacity-60"
-                        )}
-                      />
-                    </button>
-                  )
-                })}
+      {/* CONTENIDO PRINCIPAL */}
+      <div className="relative z-10 w-full px-4 py-8 sm:px-10 md:py-16">
+        <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[320px_1fr] gap-12 items-center">
+          
+          {/* COLUMNA IZQUIERDA: SELECTOR (Visible siempre en Desktop) */}
+          <div className="order-2 md:order-1 flex flex-col gap-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-white/70">Nuestros Servicios</span>
+              <div className="h-1 w-20 bg-white/10 rounded-full overflow-hidden">
+                <motion.div className="h-full bg-white origin-left" animate={progressControls} />
               </div>
             </div>
 
-            {/* hint sutil */}
-            <div className="mt-2 text-[11px] text-white/45">
-              Desliza para ver más servicios
-            </div>
-          </div>
-
-          {/* Desktop/tablet: lista vertical (tu estilo original) */}
-          <div className="mt-4 hidden gap-2 md:grid md:gap-2">
-            {services.map((s, idx) => {
-              const selected = idx === active
-
-              return (
-                <Button
-                  key={s.id}
-                  type="button"
-                  variant="ghost"
-                  onClick={() => goTo(idx)}
-                  className={cn(
-                    "group relative h-auto min-w-0 justify-start gap-3 px-3 py-3 text-left",
-                    "ring-1 ring-white/10",
-                    "bg-white/0 hover:bg-white/10",
-                    selected && "bg-white/14"
-                  )}
-                >
-                  <span
+            {/* Lista Vertical en Desktop / Scroll Horizontal en Mobile */}
+            <div className="flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-4 md:pb-0 no-scrollbar">
+              {services.map((s, idx) => {
+                const isSelected = idx === active
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => goTo(idx)}
                     className={cn(
-                      "absolute left-0 top-0 h-full w-0.5 transition",
-                      selected ? "bg-white" : "bg-white/0 group-hover:bg-white/40"
-                    )}
-                  />
-
-                  <span
-                    className={cn(
-                      "grid h-10 w-10 place-items-center rounded-lg ring-1 transition",
-                      selected
-                        ? "bg-white text-neutral-950 ring-white/20"
-                        : "bg-white/10 text-white ring-white/10 group-hover:bg-white/15"
+                      "flex-shrink-0 flex items-center gap-3 px-4 py-3 transition-all duration-300 border text-left rounded-lg md:rounded-none md:border-l-2 md:border-t-0 md:border-r-0 md:border-b-0",
+                      isSelected 
+                        ? "bg-white/20 border-white text-white" 
+                        : "bg-black/20 border-white/10 text-white/60 hover:bg-white/10 hover:text-white"
                     )}
                   >
-                    <s.Icon className="h-5 w-5" />
-                  </span>
-
-                  <span className="min-w-0">
-                    <span
-                      className={cn(
-                        "block text-sm font-semibold",
-                        selected ? "text-white" : "text-white/85"
-                      )}
-                    >
-                      {s.label}
-                    </span>
-                    <span
-                      className={cn(
-                        "mt-0.5 block text-xs",
-                        selected ? "text-white/70" : "text-white/55"
-                      )}
-                    >
-                      {s.title}
-                    </span>
-                  </span>
-
-                  <ChevronRight
-                    className={cn(
-                      "ml-auto h-4 w-4 transition",
-                      selected ? "opacity-80" : "opacity-30 group-hover:opacity-60"
-                    )}
-                  />
-                </Button>
-              )
-            })}
+                    <div className={cn(
+                      "p-2 rounded-md",
+                      isSelected ? "bg-white text-black" : "bg-white/10"
+                    )}>
+                      <s.Icon className="h-5 w-5" />
+                    </div>
+                    <div className="whitespace-nowrap">
+                      <p className="text-sm font-semibold">{s.label}</p>
+                      <p className="hidden md:block text-[10px] opacity-50 uppercase tracking-tighter">Explorar</p>
+                    </div>
+                    {isSelected && <ChevronRight className="ml-auto h-4 w-4 hidden md:block" />}
+                  </button>
+                )
+              })}
+            </div>
           </div>
+
+          {/* COLUMNA DERECHA: CAROUSEL TEXTO */}
+          <div className="order-1 md:order-2">
+            <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
+              <CarouselContent>
+                {services.map((s) => (
+                  <CarouselItem key={s.id}>
+                    <div className="max-w-2xl space-y-6">
+                      <Badge className="bg-white/10 text-white border-white/20 px-4 py-1.5 backdrop-blur-sm">
+                        <s.Icon className="mr-2 h-4 w-4" />
+                        Servicios Integrales
+                      </Badge>
+                      
+                      <h1 className="text-4xl sm:text-5xl md:text-7xl font-light text-white tracking-tight leading-tight">
+                        {s.title}
+                      </h1>
+                      
+                      <p className="text-base sm:text-lg text-white/70 max-w-xl leading-relaxed">
+                        {s.description}
+                      </p>
+
+                      <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                        <Button asChild size="lg" className="bg-white text-black hover:bg-neutral-200 rounded-xl px-8 h-12">
+                          <Link href={s.link}>
+                            {s.cta} <ArrowRight className="ml-2 h-5 w-5" />
+                          </Link>
+                        </Button>
+                        <Button asChild size="lg" variant="outline" className="text-white border-white/30 hover:bg-white/10 rounded-xl px-8 h-12 backdrop-blur-sm">
+                          <Link href="/contacto">Cotizar Ahora</Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+
         </div>
       </div>
 
-      <Separator className="pointer-events-none bg-white/10" />
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </Card>
   )
 }

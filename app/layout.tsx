@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Poppins, Roboto } from "next/font/google"
+import { Poppins, Inter_Tight } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import "./globals.css"
 
@@ -10,11 +10,12 @@ const poppins = Poppins({
   variable: "--font-heading",
 })
 
-const roboto = Roboto({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter-tight",
 })
+
 
 export const metadata: Metadata = {
   title: "Devwolf Ingeniería & Tecnología - Soluciones Integrales en Bolivia",
@@ -29,10 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${roboto.variable} ${poppins.variable} font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+      <body className={`${interTight.variable} ${poppins.variable} font-sans antialiased`}>
+
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+        {children}
+      </ThemeProvider>
       </body>
     </html>
   )

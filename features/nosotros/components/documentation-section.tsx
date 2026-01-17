@@ -1,14 +1,14 @@
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, FileText } from "lucide-react";
-import { OffsetCardWrapper } from "./OffsetCardWrapper";
+import { OffsetCardWrapper } from "../../../components/wrapper/OffsetCardWrapper";
 
 export function NosotrosDocumentationSection() {
   return (
-    <section className="py-20 bg-background h-screen flex justify-center items-center">
+    <section className="py-20 bg-background min-h-screen flex justify-center items-center">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <FileText className="h-12 w-12 mx-auto mb-4 text-primary" />
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-secondary mb-4 dark:text-foreground">
+          <h2 className="text-3xl md:text-4xl text-white mb-4 dark:text-foreground font-light">
             Documentación y Entregables
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -19,10 +19,10 @@ export function NosotrosDocumentationSection() {
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <OffsetCardWrapper>
             <Card className="p-6 text-center hover:shadow-lg transition-shadow ">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
                 <FileText className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-heading text-lg font-semibold text-secondary mb-3 dark:text-foreground">
+              <h3 className="text-lg text-white/80 mb-3 font-light">
                 Memoria Técnica
               </h3>
               <p className="text-muted-foreground">
@@ -32,11 +32,11 @@ export function NosotrosDocumentationSection() {
             </Card>
           </OffsetCardWrapper>
           <OffsetCardWrapper>
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow ">
+              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
                 <CheckCircle2 className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-heading text-lg font-semibold text-secondary mb-3 dark:text-foreground">
+              <h3 className="text-lg text-white/80 mb-3 font-light">
                 Certificados y Reportes
               </h3>
               <p className="text-muted-foreground">
@@ -47,11 +47,11 @@ export function NosotrosDocumentationSection() {
           </OffsetCardWrapper>
 
           <OffsetCardWrapper>
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow ">
+              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
                 <FileText className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-heading text-lg font-semibold text-secondary mb-3 dark:text-foreground">
+              <h3 className="text-lg text-white/80 mb-3 font-light">
                 Manuales de Usuario
               </h3>
               <p className="text-muted-foreground">

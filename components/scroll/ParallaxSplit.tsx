@@ -3,174 +3,99 @@
 import {
   motion,
   useScroll,
-  useSpring,
   useTransform,
-  MotionValue,
-  useMotionValueEvent,
+  useSpring,
 } from "framer-motion";
-import { Children, ReactNode, useMemo, useRef, useState } from "react";
+import { Children, ReactNode, useMemo, useRef } from "react";
 
-type ParallaxProps = {
+type ParallaxItemProps = {
   children: ReactNode;
-  travel?: string;
-  spring?: { stiffness?: number; damping?: number };
-  /** % del segmento que se “pausa” en el centro (0 a 0.8 aprox) */
-  pause?: number; // default 0.25
+  index: number;
 };
 
-type SceneProps = {
-  scene: ReactNode;
-  i: number;
-  count: number;
-  scrollYProgress: MotionValue<number>;
-  travel: string;
-  spring: { stiffness: number; damping: number };
-  pause: number;
-  zIndex: number;
-  isActivePair: boolean;
-};
-
-function clamp(n: number, min: number, max: number) {
-  return Math.max(min, Math.min(n, max));
-}
-
-function ParallaxScene({
-  scene,
-  i,
-  count,
-  scrollYProgress,
-  travel,
-  spring,
-  pause,
-  zIndex,
-  isActivePair,
-}: SceneProps) {
-  const step = 1 / (count - 1);
-
-  const start = (i - 1) * step;
-  const mid = i * step;
-  const end = (i + 1) * step;
-
-  const pauseClamped = Math.max(0, Math.min(pause, 0.8));
-  const hold = step * pauseClamped;
-
-  const holdStart = mid - hold / 2;
-  const holdEnd = mid + hold / 2;
-
-  // Movimiento con pausa al centro
-  const y = useTransform(
-    scrollYProgress,
-    [start, holdStart, holdEnd, end],
-    [travel, "0%", "0%", `-${travel}`]
-  );
-
-  const scaleRaw = useTransform(
-    scrollYProgress,
-    [start, holdStart, holdEnd, end],
-    [0.8, 1, 1, 0.8]
-  );
-  const scale = useSpring(scaleRaw, spring);
-
-  // Fade con pausa (esto es lo que te faltaba para “sentir” la pausa)
-  const opacity = useTransform(
-    scrollYProgress,
-    [start, holdStart, holdEnd, end],
-    [1, 1, 1, 1]
-  );
-
-  return (
-    <motion.div
-      className="absolute inset-0"
-      style={{
-        y,
-        scale,
-        opacity,
-        zIndex,
-        pointerEvents: isActivePair ? "auto" : "none",
-      }}
-    >
-      {scene}
-    </motion.div>
-  );
-}
-
-export default function Parallax({
-  children,
-  travel = "70%",
-  spring = { stiffness: 140, damping: 22 },
-  pause = 0.25,
-}: ParallaxProps) {
-  const target = useRef<HTMLDivElement>(null);
-  const scenes = useMemo(() => Children.toArray(children), [children]);
-  const count = scenes.length;
-
-  if (count === 0) return null;
-
-  const { scrollYProgress } = useScroll({ target });
-
-  if (count === 1) return <motion.div ref={target}>{scenes[0]}</motion.div>;
-
-  // Track dirección + par activo (incoming/outgoing)
-  const prev = useRef(0);
-  const [pair, setPair] = useState(() => ({
-    incoming: 1,
-    outgoing: 0,
-    direction: "down" as "down" | "up",
-  }));
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const direction: "down" | "up" = latest >= prev.current ? "down" : "up";
-    prev.current = latest;
-
-    const step = 1 / (count - 1);
-    const base = clamp(Math.floor(latest / step), 0, count - 2);
-
-    const outgoing = direction === "down" ? base : base + 1;
-    const incoming = direction === "down" ? base + 1 : base;
-
-    setPair((p) => {
-      if (
-        p.incoming === incoming &&
-        p.outgoing === outgoing &&
-        p.direction === direction
-      )
-        return p;
-      return { incoming, outgoing, direction };
-    });
+function ParallaxItem({ children, index }: ParallaxItemProps) {
+  const container = useRef<HTMLDivElement>(null);
+  
+  // Configuramos el scroll para observar la sección desde que asoma por abajo 
+  // hasta que desaparece por arriba
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
   });
 
+  // Creamos un spring para que la transición de escala sea mucho más suave (orgánica)
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 20,
+    restDelta: 0.001
+  });
+
+  /**
+   * EXPLICACIÓN DE LOS RANGOS [0, 0.2, 0.8, 1]:
+   * 0.0: La sección está debajo de la pantalla (inicio de entrada).
+   * 0.2: La sección ya ocupó su lugar (fin de entrada).
+   * 0.8: La sección empieza a salir hacia arriba (inicio de salida).
+   * 1.0: La sección ya no es visible arriba (fin de salida).
+   */
+
+  // EFECTO ESCALA: Crece al entrar (0.8 -> 1) y se encoge al salir (1 -> 0.8)
+  const scale = useTransform(
+    smoothProgress,
+    [0, 0.2, 0.8, 1],
+    [0.8, 1, 1, 0.8]
+  );
+
+  // EFECTO OPACIDAD: Aparece suavemente al entrar y desaparece al salir
+  const opacity = useTransform(
+    smoothProgress,
+    [0, 0.1, 0.9, 1],
+    [0, 1, 1, 0]
+  );
+
+  // EFECTO TRASLACIÓN (Push): 
+  // Al entrar viene un poco desde abajo (10%)
+  // Al salir se mueve un poco hacia arriba (-10%)
+  const y = useTransform(
+    smoothProgress,
+    [0, 0.2, 0.8, 1],
+    ["10%", "0%", "0%", "-10%"]
+  );
+
   return (
-    <motion.div ref={target} className="relative">
-      <div className="sticky top-0 h-screen overflow-hidden relative">
-        {scenes.map((scene, i) => {
-          const isIncoming = i === pair.incoming;
-          const isOutgoing = i === pair.outgoing;
+    <div 
+      ref={container} 
+      className="relative w-full"
+      style={{ 
+        minHeight: "100vh",
+        zIndex: index, // Cada sección se apila sobre la anterior
+        marginBottom: "-5vh" // Un ligero solapamiento para que no se vea el fondo negro
+      }}
+    >
+      <motion.div
+        style={{
+          scale,
+          opacity,
+          y,
+        }}
+        className="w-full h-full origin-center will-change-transform"
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
 
-          // Incoming SIEMPRE arriba
-          const zIndex = isIncoming ? 2 : isOutgoing ? 1 : 0;
-          const isActivePair = isIncoming || isOutgoing;
+export default function SmoothPushGrowWrapper({ children }: { children: ReactNode }) {
+  const scenes = useMemo(() => Children.toArray(children), [children]);
 
-          return (
-            <ParallaxScene
-              key={i}
-              scene={scene}
-              i={i}
-              count={count}
-              scrollYProgress={scrollYProgress}
-              travel={travel}
-              pause={pause}
-              spring={{
-                stiffness: spring.stiffness ?? 140,
-                damping: spring.damping ?? 22,
-              }}
-              zIndex={zIndex}
-              isActivePair={isActivePair}
-            />
-          );
-        })}
-      </div>
-
-      <div style={{ height: `${(count - 1) * 100}vh` }} />
-    </motion.div>
+  return (
+    // bg-neutral-950 o el color de fondo de tu web para que las transiciones sean elegantes
+    <div className="relative bg-neutral-950 flex flex-col items-center">
+      {scenes.map((scene, i) => (
+        <ParallaxItem key={i} index={i}>
+          {scene}
+        </ParallaxItem>
+      ))}
+    </div>
   );
 }

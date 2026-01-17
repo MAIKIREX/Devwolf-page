@@ -55,7 +55,7 @@ export function WhyChooseUs() {
           <p className="text-xs uppercase tracking-wider text-neutral-500">
             Confianza y respaldo
           </p>
-          <h2 className="mt-2 text-3xl md:text-4xl font-heading font-bold">
+          <h2 className="mt-2 text-3xl md:text-4xl font-light">
             ¿Por qué elegirnos?
           </h2>
           <p className="mt-3 text-neutral-600 max-w-2xl mx-auto leading-relaxed">
@@ -84,7 +84,7 @@ export function WhyChooseUs() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-heading font-semibold mb-3 dark:text-foreground">
+                  <h3 className="text-xl mb-3 dark:text-foreground font-light">
                     {reason.title}
                   </h3>
                   <p className="text-neutral-600 leading-relaxed">
