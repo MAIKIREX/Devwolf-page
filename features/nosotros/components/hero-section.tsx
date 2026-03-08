@@ -19,7 +19,7 @@ export function NosotrosHeroSection() {
           <div className="flex justify-center md:col-span-5 md:justify-end lg:col-span-5">
             <Image
               src="/images/logov11.svg"
-              alt="Devwolf I&T"
+              alt="Logo de Devwolf Ingeniería y Tecnología"
               width={320}
               height={320}
               priority
