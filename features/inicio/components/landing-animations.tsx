@@ -58,28 +58,6 @@ export function LandingAnimations() {
         })
       })
 
-      const orbit = gsap.utils.toArray<HTMLElement>("[data-orbit]")
-      orbit.forEach((element, index) => {
-        gsap.from(element, {
-          autoAlpha: 0,
-          y: 80,
-          scale: 0.86,
-          duration: 1,
-          delay: index * 0.12,
-          ease: "power3.out",
-          scrollTrigger: { trigger: "[data-value]", start: "top 65%", once: true },
-          clearProps: "opacity,visibility,transform",
-        })
-      })
-
-      gsap.matchMedia().add("(min-width: 1100px)", () => {
-        gsap.to("[data-orbit]", {
-          yPercent: (index) => index === 1 ? -14 : index === 0 ? 8 : 3,
-          xPercent: (index) => index === 0 ? -8 : index === 2 ? 8 : 0,
-          ease: "none",
-          scrollTrigger: { trigger: "[data-value]", start: "top 80%", end: "bottom 15%", scrub: 1 },
-        })
-      })
 
       const progress = document.querySelector<HTMLElement>("[data-scroll-progress]")
       if (progress) {

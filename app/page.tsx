@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowDown, ArrowRight, ArrowUpRight, MapPin } from "lucide-react"
+import { ArrowDown, ArrowRight, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react"
 import { HomeHeader } from "@/features/inicio/components/home-header"
 import { LandingAnimations } from "@/features/inicio/components/landing-animations"
-import { HomeAbout, HomeServices } from "@/features/inicio/components/home-interactive"
+import { HomeAbout } from "@/features/inicio/components/home-interactive"
+import { HomeServices } from "@/features/inicio/components/service-story"
+import { HomeEnfoque } from "@/features/inicio/components/home-enfoque"
 import styles from "./home.module.css"
 
 export const metadata: Metadata = {
@@ -13,12 +15,12 @@ export const metadata: Metadata = {
 }
 
 const services = [
-  { number: "01", name: "Construcción y obra liviana", category: "Infraestructura", description: "Refacciones, remodelaciones, acabados y mantenimiento para espacios residenciales y comerciales.", href: "/servicios/construccion-obra-liviana", image: "/images/construccion/interior-drywall-hero.webp", alt: "Interior en proceso de construcción y acabados" },
-  { number: "02", name: "Instalaciones eléctricas", category: "Energía", description: "Iluminación, tableros, protecciones, puesta a tierra y automatización industrial.", href: "/servicios/instalaciones-electricas", image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499000/electrical-panel-industrial-installation-with-cabl_tndrx0.jpg", alt: "Panel de instalación eléctrica industrial" },
-  { number: "03", name: "Redes y telecomunicaciones", category: "Conectividad", description: "Cableado estructurado, redes seguras, WiFi empresarial, CCTV y comunicaciones industriales.", href: "/servicios/redes-telecomunicaciones", image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499004/network-server-room-with-fiber-optic-cables-and-sw_nv9eza.jpg", alt: "Infraestructura de redes y telecomunicaciones" },
-  { number: "04", name: "Distribución de equipos", category: "Suministro", description: "Equipos informáticos, materiales eléctricos y herramientas técnicas con asesoría y soporte.", href: "/servicios/distribucion-equipos", image: "/images/distribucion/gaming-pc-fallback.webp", alt: "Equipo informático de alto rendimiento" },
-  { number: "05", name: "Software y DevOps", category: "Soluciones digitales", description: "Sistemas web, APIs, integraciones, automatización e infraestructura en la nube.", href: "/servicios/software-devops", image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499008/software-developer-coding-on-multiple-screens_jeumvy.jpg", alt: "Desarrollo de software y soluciones digitales" },
-  { number: "06", name: "Diseño e impresión 3D", category: "Fabricación", description: "Prototipos, repuestos, piezas funcionales y señalética personalizada.", href: "/servicios/impresion-3d", image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768498991/3d-printer-manufacturing-custom-parts-in-action-cl_ilhupl.jpg", alt: "Impresora 3D fabricando una pieza" },
+  { number: "01", name: "Construcción y obra liviana", category: "Infraestructura", description: "Transformamos espacios para que respondan mejor a quienes los usan.", highlights: ["Refacciones y remodelaciones", "Acabados y mantenimiento"], href: "/servicios/construccion-obra-liviana", image: "/images/construccion/interior-drywall-hero.webp", alt: "Interior en proceso de construcción y acabados" },
+  { number: "02", name: "Instalaciones eléctricas", category: "Energía", description: "Diseñamos e implementamos sistemas eléctricos seguros y eficientes.", highlights: ["Iluminación, tableros y protecciones", "Puesta a tierra y automatización"], href: "/servicios/instalaciones-electricas", image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499000/electrical-panel-industrial-installation-with-cabl_tndrx0.jpg", alt: "Panel de instalación eléctrica industrial" },
+  { number: "03", name: "Redes y telecomunicaciones", category: "Conectividad", description: "Creamos la infraestructura que mantiene personas y sistemas conectados.", highlights: ["Cableado estructurado y WiFi", "CCTV y comunicaciones industriales"], href: "/servicios/redes-telecomunicaciones", image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499004/network-server-room-with-fiber-optic-cables-and-sw_nv9eza.jpg", alt: "Infraestructura de redes y telecomunicaciones" },
+  { number: "04", name: "Distribución de equipos", category: "Suministro", description: "Acercamos los equipos adecuados a cada necesidad técnica.", highlights: ["Equipos y materiales especializados", "Asesoría técnica y soporte"], href: "/servicios/distribucion-equipos", image: "/images/distribucion/gaming-pc-fallback.webp", alt: "Equipo informático de alto rendimiento" },
+  { number: "05", name: "Software y DevOps", category: "Soluciones digitales", description: "Convertimos procesos complejos en herramientas digitales útiles.", highlights: ["Sistemas web, APIs e integraciones", "Automatización e infraestructura en la nube"], href: "/servicios/software-devops", image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768499008/software-developer-coding-on-multiple-screens_jeumvy.jpg", alt: "Desarrollo de software y soluciones digitales" },
+  { number: "06", name: "Diseño e impresión 3D", category: "Fabricación", description: "Damos forma física a ideas, piezas y soluciones a medida.", highlights: ["Prototipos y repuestos funcionales", "Piezas y señalética personalizada"], href: "/servicios/impresion-3d", image: "https://res.cloudinary.com/dbrkedvyp/image/upload/v1768498991/3d-printer-manufacturing-custom-parts-in-action-cl_ilhupl.jpg", alt: "Impresora 3D fabricando una pieza" },
 ]
 
 const process = [
@@ -64,18 +66,11 @@ export default function HomePage() {
       <HomeAbout styles={styles} />
 
       <section id="servicios" className={styles.servicesSection} aria-labelledby="services-title">
-        <div className={styles.sectionIntro} data-reveal><div><p className={styles.kicker}>02 / Lo que hacemos</p><h2 id="services-title" className={styles.sectionTitle}>Una solución para <em>cada desafío.</em></h2></div><p>Seis disciplinas conectadas para construir, equipar y potenciar tu operación.</p></div>
+        <div className={styles.sectionIntro} data-reveal><div><p className={styles.kicker}>02 / Lo que hacemos</p><h2 id="services-title" className={styles.sectionTitle}>Una solución para <em>cada desafío.</em></h2></div><p>Desliza para recorrer seis disciplinas conectadas. Cada una responde a una parte de tu proyecto.</p></div>
         <HomeServices services={services} styles={styles} />
       </section>
 
-      <section id="enfoque" data-value className={styles.valueSection} aria-labelledby="value-title">
-        <div className={styles.valueTop} data-reveal><div><p className={styles.kicker}>03 / Nuestro enfoque</p><h2 id="value-title" className={styles.sectionTitle}>Diferentes disciplinas.<br /><em>Una misma visión.</em></h2></div><p>Cada proyecto funciona mejor cuando sus partes se piensan juntas. Coordinamos soluciones físicas y digitales con un proceso claro.</p></div>
-        <div className={styles.orbit} aria-label="Tres fortalezas de Devwolf">
-          <div data-orbit className={`${styles.orbitCircle} ${styles.orbitOne}`}><span>01</span><strong>Visión<br />integral</strong><p>Construcción, energía y tecnología conectadas desde el inicio.</p></div>
-          <div data-orbit className={`${styles.orbitCircle} ${styles.orbitTwo}`}><span>02</span><strong>Ejecución<br />técnica</strong><p>Planificación, implementación y pruebas en cada etapa.</p></div>
-          <div data-orbit className={`${styles.orbitCircle} ${styles.orbitThree}`}><span>03</span><strong>Soporte<br />continuo</strong><p>Documentación y acompañamiento después de la entrega.</p></div>
-        </div>
-      </section>
+      <HomeEnfoque />
 
       <section id="metodologia" className={styles.processSection} aria-labelledby="process-title">
         <div className={styles.processVisual}><div data-parallax className={styles.processPhoto}><Image src="/images/home/devwolf-process-team.webp" alt="Representación de un equipo técnico revisando una instalación eléctrica y de redes" fill sizes="(max-width: 900px) 100vw, 48vw" className={styles.cover} /></div></div>
@@ -100,8 +95,32 @@ export default function HomePage() {
 
       <footer className={styles.footer}>
         <div className={styles.footerTop}>
-          <div className={styles.footerBrand}><Link href="/" aria-label="Devwolf, ir al inicio" className={styles.footerLogo}><Image src="/images/devwolf-dv-emblem.png" alt="" width={58} height={58} /><span>Devwolf</span></Link><p>Ingeniería y tecnología para conectar ideas con soluciones que funcionan.</p></div>
-          <div className={styles.footerLinks}><div><span>Explora</span><Link href="#nosotros">Nosotros</Link><Link href="#servicios">Servicios</Link><Link href="#metodologia">Cómo trabajamos</Link></div><div><span>Contacto</span><Link href="/contacto">Solicitar cotización</Link><a href="tel:+59178855457">+591 78855457</a><a href="mailto:innova.ingenieriaytecnologia@gmail.com">Enviar un email <ArrowRight size={14} aria-hidden="true" /></a></div></div>
+          <div className={styles.footerBrand}>
+            <Link href="/" aria-label="Devwolf, ir al inicio" className={styles.footerLogo}>
+              <span>Devwolf</span>
+            </Link>
+            <p>Ingeniería y tecnología para conectar ideas con soluciones que funcionan.</p>
+          </div>
+          <div className={styles.footerLinks}>
+            <div className={styles.footerCol}>
+              <span className={styles.footerColTitle}>Explora</span>
+              <Link href="#nosotros" className={styles.footerNavLink}>Nosotros</Link>
+              <Link href="#servicios" className={styles.footerNavLink}>Servicios</Link>
+              <Link href="#metodologia" className={styles.footerNavLink}>Cómo trabajamos</Link>
+            </div>
+            <div className={styles.footerCol}>
+              <span className={styles.footerColTitle}>Contacto</span>
+              <Link href="/contacto" className={styles.footerHighlightLink}>
+                Solicitar cotización <ArrowUpRight size={15} aria-hidden="true" />
+              </Link>
+              <a href="tel:+59178855457" className={styles.footerContactLink}>
+                <Phone size={14} aria-hidden="true" /> +591 78855457
+              </a>
+              <a href="mailto:innova.ingenieriaytecnologia@gmail.com" className={styles.footerContactLink}>
+                <Mail size={14} aria-hidden="true" /> Enviar un email <ArrowRight size={14} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
         </div>
         <div className={styles.footerLocation}><MapPin size={18} aria-hidden="true" /><span>La Paz · Bolivia</span><span className={styles.footerLocationLine} /><span>Ingeniería & tecnología</span></div>
         <div className={styles.footerBottom}><span>© {new Date().getFullYear()} Devwolf Ingeniería & Tecnología</span><span>NIT 680646031</span></div>
