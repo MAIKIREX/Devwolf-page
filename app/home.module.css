@@ -115,15 +115,13 @@
 @media(max-width:700px){.hero{height:auto;min-height:760px}.heroImage img{object-position:64% center}.heroShade{background:linear-gradient(90deg,rgba(3,7,13,.96),rgba(3,7,13,.65)),linear-gradient(0deg,#05080d,transparent 60%)}.heroInner{padding:160px 25px 140px}.heroTitle{font-size:clamp(4rem,14vw,6rem)}.heroSideNote{display:none}.heroBottom{font-size:9px;gap:10px}.mosaicStrip{grid-template-columns:1fr 1fr}.mosaicTile{height:160px}.mosaicTile span{left:12px;bottom:12px;font-size:9px}.aboutSection,.servicesSection,.valueSection,.capabilities{padding:85px 22px}.aboutStage{display:block}.aboutLeft{padding:24px 0}.aboutTabs{gap:4px}.aboutTab,.aboutTabActive{font-size:11px}.aboutPhoto{height:300px}.aboutRight{padding:50px 25px 55px 35px;border-top:1px solid var(--line)}.aboutRail{left:0}.aboutPanel h3{font-size:2.7rem}.aboutStat strong{font-size:6rem}.sectionIntro,.aboutIntro,.valueTop{margin-bottom:35px}.serviceMedia{min-height:570px}.serviceMediaNumber{top:24px;left:24px}.serviceMediaInfo{left:24px;right:24px;bottom:30px}.serviceMediaInfo h3{font-size:2.7rem}.serviceArrows{top:20px;right:20px}.serviceList{grid-template-columns:1fr;padding:20px 25px}.serviceItem,.serviceItemActive{padding:18px 0}.valueSection{min-height:auto}.orbit{display:grid;justify-items:center;gap:14px;min-height:auto}.orbitCircle{width:min(100%,330px);height:330px;min-width:0;min-height:0;transform:none}.processSection{display:flex;flex-direction:column}.processVisual{min-height:380px}.processContent{padding:65px 25px}.capabilityGrid{grid-template-columns:1fr}.capabilityCard{min-height:350px}.cta{min-height:580px}.footer{padding:65px 22px 28px}.footerTop{flex-direction:column;gap:35px;padding-bottom:40px}.footerLogo{font-size:clamp(3.2rem,15vw,4.8rem);line-height:.95;letter-spacing:-.04em}.footerBrand p{font-size:14px;margin-top:16px;max-width:100%}.footerLinks{display:grid;grid-template-columns:1fr 1fr;gap:28px 20px;width:100%;border-top:1px solid var(--line);padding-top:28px;margin-top:0}.footerCol{gap:12px}.footerNavLink,.footerHighlightLink,.footerContactLink{font-size:13.5px;padding:3px 0}.footerLocation{flex-direction:column;align-items:flex-start;gap:12px;padding:20px 0}.footerLocationLine{display:none}.footerBottom{flex-direction:column;gap:10px;padding-top:20px}}
 @media(prefers-reduced-motion:reduce){.home *, .home *:before, .home *:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-/* Six-scene service story. Without scroll enhancement, every scene stays in normal flow. */
+/* Six services in normal document flow on desktop; mobile keeps the scroll reveals. */
 .storyTrack{max-width:1440px;margin:0 auto}
-.storyStage{position:relative;isolation:isolate;background:#05080d;border-left:1px solid rgba(252,163,17,.36);border-right:1px solid rgba(252,163,17,.36)}
-.storyTrack[data-story-ready="true"] .storyStage{position:sticky;top:76px;height:max(620px,calc(100svh - 76px));overflow:hidden;perspective:1400px}
-.storyTrack[data-story-ready="true"] .storyScene{position:absolute;inset:0}
-.storyScene{min-height:690px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(40px,6vw,110px);padding:44px clamp(38px,5vw,88px) 82px;background:transparent;perspective:1100px}
+.storyStage{position:relative;isolation:isolate}
+.storyScene{min-height:600px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(40px,6vw,110px);padding:64px clamp(38px,5vw,88px);background:transparent}
 .storySceneOdd .storyVisual{order:2}.storySceneOdd .storyCopy{order:1}
 .storySceneEven .storyVisual{order:1}.storySceneEven .storyCopy{order:2}
-.storyVisual{position:relative;height:min(65svh,580px);min-height:390px;overflow:hidden;background:#14213d;border:1px solid rgba(252,163,17,.3);transform-style:preserve-3d;backface-visibility:hidden;box-shadow:0 28px 80px rgba(0,0,0,.32)}
+.storyVisual{position:relative;height:min(60svh,520px);min-height:390px;overflow:hidden;background:#14213d;border:1px solid rgba(252,163,17,.3);box-shadow:0 28px 80px rgba(0,0,0,.32)}
 .storyVisual img{transition:transform .8s ease;object-position:center}
 .storyVisual:hover img{transform:scale(1.035)}
 .storyVisualVeil{position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,8,13,.34),transparent 40%)}
@@ -140,22 +138,7 @@
 .storyCopy li:before{content:"";position:absolute;top:.42em;left:0;width:8px;height:8px;border-radius:50%;background:var(--amber)}
 .storyLink{display:inline-flex;align-items:center;gap:16px;margin-top:30px;padding-bottom:8px;border-bottom:1px solid var(--amber);color:#eaf0ff;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;transition:color .25s}
 .storyLink:hover{color:var(--amber)}
-.storyRail{display:none;position:absolute;inset:0;z-index:10;pointer-events:none}
-.storyTrack[data-story-ready="true"] .storyRail{display:block}
-.storyRail span{position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(252,163,17,.28) 25%,rgba(252,163,17,.28) 75%,transparent)}
-.storyRail span:first-child{left:50%}.storyRail span:last-child{display:none}
-.storyControls{display:none;position:absolute;z-index:20;left:clamp(38px,5vw,88px);right:clamp(38px,5vw,88px);bottom:22px;align-items:center;gap:30px}
-.storyTrack[data-story-ready="true"] .storyControls{display:flex}
-.storyCounter{display:flex;align-items:baseline;gap:5px;min-width:65px;color:var(--amber)}
-.storyCounter strong{font-size:20px;font-weight:500}.storyCounter span{font-size:10px;letter-spacing:.15em;color:#8e9bb0}
-.storyDots{display:flex;align-items:center;gap:8px}
-.storyDot,.storyDotActive{width:34px;height:16px;padding:0;border:0;background:none;cursor:pointer}
-.storyDot:before,.storyDotActive:before{content:"";display:block;width:100%;height:2px;background:#596a80;transition:background .25s,height .25s}
-.storyDot:hover:before,.storyDotActive:before{height:3px;background:var(--amber)}
-.storyScrollHint{display:inline-flex;align-items:center;gap:10px;margin-left:auto;color:#9baac0;font-size:10px;font-weight:750;text-transform:uppercase;letter-spacing:.16em}
-.storyScrollHint svg{color:var(--amber)}
 @media(max-width:1023px){
-  .storyStage{border:0;background:transparent}
   .storyScene{min-height:0;grid-template-columns:1fr;gap:0;padding:0 0 54px;margin-bottom:54px;border-bottom:1px solid var(--line);background:transparent}
   .storyScene:last-of-type{margin-bottom:0}
   .storySceneOdd .storyVisual,.storySceneEven .storyVisual{order:1}
@@ -163,7 +146,6 @@
   .storyVisual{height:clamp(300px,52vw,500px);min-height:0}
   .storyCopy{padding:32px 6px 0}
   .storyCopy h3{font-size:clamp(2.8rem,7vw,5rem)}
-  .storyRail,.storyControls{display:none}
 }
 @media(max-width:700px){
   .storyScene{padding-bottom:42px;margin-bottom:42px}

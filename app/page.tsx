@@ -66,7 +66,7 @@ export default function HomePage() {
       <HomeAbout styles={styles} />
 
       <section id="servicios" className={styles.servicesSection} aria-labelledby="services-title">
-        <div className={styles.sectionIntro} data-reveal><div><p className={styles.kicker}>02 / Lo que hacemos</p><h2 id="services-title" className={styles.sectionTitle}>Una solución para <em>cada desafío.</em></h2></div><p>Desliza para recorrer seis disciplinas conectadas. Cada una responde a una parte de tu proyecto.</p></div>
+        <div className={styles.sectionIntro} data-reveal><div><p className={styles.kicker}>02 / Lo que hacemos</p><h2 id="services-title" className={styles.sectionTitle}>Una solución para <em>cada desafío.</em></h2></div><p>Seis disciplinas conectadas. Cada una responde a una parte de tu proyecto.</p></div>
         <HomeServices services={services} styles={styles} />
       </section>
 
