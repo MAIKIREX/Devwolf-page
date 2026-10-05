@@ -1,53 +1,74 @@
-import ServiceHero from "@/features/services/components/service-hero"
-import ServiceDetailsSection from "@/features/services/components/service-details-section"
-import ConstruccionServicesExpanded from "@/features/services/components/construccion-obra-liviana/construccion-services-expanded"
-import ProcessSection from "@/features/services/components/process-section"
-import NewsletterSection from "@/features/services/components/newsletter-section"
-import { Footer } from "@/components/layout/footer/footer"
-import { Navbar } from "@/components/layout/navbar/navbar"
-import PushScaleWrapper from "@/components/scroll/PushScaleWrapper"
+import type { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, ClipboardList, HardHat, Layers3, MapPin, Menu, PaintRoller, Ruler, ShieldCheck, Wrench } from "lucide-react"
+import { ConstructionAnimations } from "@/features/services/components/construccion-obra-liviana/construction-animations"
 
-export const metadata = {
-  title: "Construcción y Obra Liviana | DEVWOLF",
-  description: "Servicios de construcción y obra liviana: refacciones, remodelaciones, acabados y montaje corporativo",
+export const metadata: Metadata = {
+  title: "Construcción civil menor y obra liviana | Devwolf",
+  description: "Adecuaciones interiores, drywall, cielos falsos, reparaciones, acabados e instalaciones complementarias para viviendas, oficinas y locales en Bolivia.",
 }
 
+const heroImage = "/images/construccion/interior-drywall-hero.webp"
+const renovationImage = "/images/construccion/acabados-interiores.webp"
+
+const services = [
+  { number: "01", icon: Ruler, title: "Drywall y distribución de ambientes", text: "Creamos divisiones o adaptamos la distribución de interiores para aprovechar mejor cada espacio.", details: ["Instalación de tabiques de drywall", "Separación de ambientes", "Unificación y adecuación de espacios"] },
+  { number: "02", icon: PaintRoller, title: "Cielos falsos y acabados", text: "Cuidamos las superficies y terminaciones que hacen más cómodo y funcional un ambiente.", details: ["Instalación de cielo falso", "Pintura y trabajos de yeso", "Revestimientos y detalles interiores"] },
+  { number: "03", icon: Wrench, title: "Reparaciones y mantenimiento", text: "Recuperamos elementos existentes y resolvemos problemas puntuales sin plantear una obra desde cero.", details: ["Reparación de muebles y elementos fijos", "Corrección de fisuras y humedad", "Mantenimiento de acabados"] },
+  { number: "04", icon: Layers3, title: "Adecuaciones complementarias", text: "Integramos trabajos livianos que completan la renovación de viviendas, oficinas y locales.", details: ["Instalaciones eléctricas interiores", "Intervenciones menores en fachadas", "Montaje de elementos y señalética"] },
+]
+
+const process = [
+  { number: "01", title: "Visitamos y definimos", text: "Revisamos el espacio, escuchamos el objetivo y delimitamos el trabajo necesario." },
+  { number: "02", title: "Planificamos la propuesta", text: "Organizamos alcance, materiales, presupuesto y tiempos de referencia." },
+  { number: "03", title: "Ejecutamos por etapas", text: "Coordinamos los trabajos con supervisión, seguridad y control de calidad." },
+  { number: "04", title: "Cerramos y acompañamos", text: "Revisamos el resultado y entregamos la documentación y recomendaciones aplicables." },
+]
+
+const deliverables = [
+  "Resumen de los trabajos realizados y planos básicos, cuando el alcance lo requiera.",
+  "Relación de materiales utilizados y fichas de los elementos instalados, cuando correspondan.",
+  "Comprobaciones y recomendaciones de uso de los elementos instalados.",
+  "Indicaciones de mantenimiento y soporte posterior según el trabajo.",
+]
+
 export default function ConstructionPage() {
-  return (
-    <main className="bg-white">
-      <Navbar />
-      <ServiceHero title="CONSTRUCCIÓN Y OBRA LIVIANA" videoSrc="https://res.cloudinary.com/dbrkedvyp/video/upload/v1768499725/construccionCivil_hus7ha.mp4"/>
-      <PushScaleWrapper>
-        <ServiceDetailsSection service="construccion" />
-        <ConstruccionServicesExpanded />
-        <ProcessSection
-          steps={[
-            {
-              title: "Levantamiento tecnico",
-              description: "Inspeccion en sitio y definicion del alcance de obra.",
-            },
-            {
-              title: "Planificacion y presupuesto",
-              description: "Cronograma, materiales y presupuesto optimizado.",
-            },
-            {
-              title: "Ejecucion supervisada",
-              description: "Control de calidad, seguridad y avances por etapas.",
-            },
-          ]}
-          commitmentsTitle="Compromisos de obra"
-          commitments={[
-            "Cumplimiento de normativa y buenas practicas constructivas.",
-            "Seguridad ocupacional y proteccion de activos.",
-            "Trazabilidad de materiales y documentacion de cambios.",
-          ]}
-        />
-        <NewsletterSection
-          heading="Coordina tu visita tecnica"
-          description="Agendemos una visita tecnica para evaluar tu proyecto y entregarte una propuesta detallada."
-        />
-      </PushScaleWrapper>
-      <Footer />
-    </main>
-  )
+  return <main className="overflow-x-clip bg-[#05080d] text-white">
+    <ConstructionAnimations />
+    <div data-construction-progress aria-hidden="true" className="fixed inset-x-0 top-0 z-50 h-[3px] origin-left scale-x-0 bg-[#FCA311]" />
+
+    <section data-construction-hero className="relative isolate min-h-[1000px] sm:min-h-[820px] overflow-hidden bg-[#14213D] lg:min-h-screen">
+      <div data-construction-parallax className="absolute -inset-y-10 inset-x-0"><Image src={heroImage} alt="Instalación de drywall y cielo falso en un espacio interior" fill priority sizes="100vw" className="object-cover object-center" /></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#030811]/95 via-[#071321]/75 to-[#071321]/25" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#05080d] via-transparent to-[#05080d]/30" />
+      <header className="relative z-30 px-5 pt-5 sm:px-8 lg:px-8"><nav aria-label="Navegación de construcción" className="mx-auto flex min-h-[74px] max-w-[1440px] items-center justify-between gap-4 border-b border-white/25">
+        <Link href="/" className="inline-flex items-center gap-3 text-lg font-bold"><span className="grid size-10 place-items-center bg-white"><Image src="/images/devwolf-dv-emblem.png" alt="" width={34} height={34} className="size-9 object-contain" /></span><span>Devwolf<span className="block text-[9px] font-medium uppercase tracking-[.15em] text-white/60">Ingeniería & tecnología</span></span></Link>
+        <div className="hidden items-center gap-8 lg:flex"><Link href="/" className="text-xs font-semibold uppercase tracking-[.14em] text-white/75 hover:text-[#FCA311]">Inicio</Link><Link href="#servicios" className="text-xs font-semibold uppercase tracking-[.14em] text-white/75 hover:text-[#FCA311]">Servicios</Link><Link href="#proceso" className="text-xs font-semibold uppercase tracking-[.14em] text-white/75 hover:text-[#FCA311]">Proceso</Link><Link href="/contacto" className="text-xs font-semibold uppercase tracking-[.14em] text-white/75 hover:text-[#FCA311]">Contacto</Link></div>
+        <Link href="/contacto" className="hidden items-center gap-2 border border-white/50 px-5 py-3 text-xs font-bold uppercase tracking-[.12em] transition-colors hover:border-[#FCA311] hover:bg-[#FCA311] hover:text-[#14213D] lg:inline-flex">Solicitar visita <ArrowUpRight size={15} aria-hidden="true" /></Link>
+        <details className="group relative lg:hidden"><summary aria-label="Abrir menú" className="grid size-11 cursor-pointer list-none place-items-center border border-white/35 marker:hidden"><Menu size={21} aria-hidden="true" /></summary><div className="absolute right-0 top-12 z-40 w-48 border border-white/15 bg-[#101a31] p-2 shadow-2xl"><Link href="/" className="block px-3 py-3 text-sm">Inicio</Link><Link href="#servicios" className="block px-3 py-3 text-sm">Servicios</Link><Link href="#proceso" className="block px-3 py-3 text-sm">Proceso</Link><Link href="/contacto" className="block px-3 py-3 text-sm">Contacto</Link></div></details>
+      </nav></header>
+      <div className="relative mx-auto flex min-h-[1000px] sm:min-h-[820px] max-w-[1440px] flex-col justify-center px-5 pb-52 pt-28 sm:px-8 lg:min-h-[calc(100vh-94px)] lg:px-8 lg:pb-40"><div className="max-w-[840px]">
+        <p data-construction-enter className="mb-6 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[.22em] text-[#FCA311] sm:text-xs"><span className="h-px w-10 bg-[#FCA311]" /> Construcción civil menor · Interiores</p>
+        <h1 data-construction-enter className="text-[clamp(3.25rem,7.4vw,7.8rem)] font-semibold leading-[.96] tracking-[-.06em]">Espacios que se <span className="text-[#FCA311]">transforman</span> contigo.</h1>
+        <p data-construction-enter className="mt-7 max-w-[610px] text-base leading-relaxed text-white/80 sm:text-lg">Transformamos interiores con drywall, cielos falsos, reparaciones, acabados y adecuaciones eléctricas. Trabajos de escala menor para viviendas, oficinas y locales, coordinados de principio a fin.</p>
+        <div data-construction-enter className="mt-9 flex flex-wrap items-center gap-6"><Link href="/contacto" className="inline-flex min-h-13 items-center gap-3 bg-[#FCA311] px-6 py-4 text-sm font-bold text-[#14213D] transition-colors hover:bg-white">Cuéntanos tu proyecto <ArrowUpRight size={18} aria-hidden="true" /></Link><Link href="#servicios" className="inline-flex min-h-13 items-center gap-3 border-b border-white/75 text-sm font-semibold hover:text-[#FCA311]">Explorar trabajos <ArrowDown size={17} aria-hidden="true" /></Link></div>
+      </div></div>
+      <div className="absolute inset-x-0 bottom-0 border-t border-white/20 bg-[#07111e]/75 backdrop-blur-md"><div className="mx-auto grid max-w-[1440px] px-5 sm:px-8 md:grid-cols-3 lg:px-8"><div className="flex items-center gap-4 border-b border-white/15 py-4 md:border-b-0 md:border-r md:py-7"><HardHat size={23} className="shrink-0 text-[#FCA311]" aria-hidden="true" /><div><strong className="block text-sm">Intervenciones a medida</strong><span className="text-xs text-white/55">Alcance claro desde el inicio</span></div></div><div className="flex items-center gap-4 border-b border-white/15 py-4 md:border-b-0 md:border-r md:pl-8 md:py-7"><ShieldCheck size={23} className="shrink-0 text-[#FCA311]" aria-hidden="true" /><div><strong className="block text-sm">Ejecución responsable</strong><span className="text-xs text-white/55">Seguridad y control por etapas</span></div></div><div className="flex items-center gap-4 py-4 md:pl-8"><MapPin size={23} className="shrink-0 text-[#FCA311]" aria-hidden="true" /><div><strong className="block text-sm">Base en La Paz</strong><span className="text-xs text-white/55">Atención en Bolivia por coordinación</span></div></div></div></div>
+    </section>
+
+    <section id="enfoque" className="px-5 py-24 sm:px-8 lg:px-8 lg:py-40"><div className="mx-auto grid max-w-[1440px] items-center gap-14 lg:grid-cols-[.86fr_1.14fr] lg:gap-24"><div data-construction-reveal><p className="mb-5 text-xs font-bold uppercase tracking-[.22em] text-[#FCA311]">01 / Nuestro enfoque</p><h2 className="text-4xl font-semibold leading-[1.06] tracking-[-.05em] sm:text-5xl lg:text-6xl">Una intervención bien pensada se nota <span className="text-[#FCA311]">en cada detalle.</span></h2><p className="mt-7 max-w-[520px] leading-relaxed text-white/65 sm:text-lg">Nos enfocamos en mejoras concretas de espacios existentes: dividir o unir ambientes, reparar mobiliario, instalar cielos falsos y renovar acabados. Comenzamos entendiendo el uso del lugar antes de definir materiales y trabajos.</p><div className="mt-8 grid gap-4 border-t border-white/15 pt-7 text-sm text-white/80 sm:grid-cols-2"><p className="flex gap-3"><Check size={18} className="shrink-0 text-[#FCA311]" /> Viviendas y espacios residenciales</p><p className="flex gap-3"><Check size={18} className="shrink-0 text-[#FCA311]" /> Oficinas y áreas de trabajo</p><p className="flex gap-3"><Check size={18} className="shrink-0 text-[#FCA311]" /> Locales y espacios comerciales</p><p className="flex gap-3"><Check size={18} className="shrink-0 text-[#FCA311]" /> Ambientes corporativos</p></div></div><div data-construction-reveal className="relative min-h-[400px] overflow-hidden bg-[#14213D] sm:min-h-[580px]"><div data-construction-parallax className="absolute -inset-y-10 inset-x-0"><Image src={renovationImage} alt="Trabajo de acabados en una división interior de drywall" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" /></div><div className="absolute inset-0 bg-gradient-to-t from-[#04101c]/85 via-transparent to-transparent" /><div className="absolute bottom-7 left-6 right-6 border-l-2 border-[#FCA311] pl-5 sm:bottom-9 sm:left-9"><p className="text-xs font-bold uppercase tracking-[.2em] text-[#FCA311]">Del uso al espacio</p><p className="mt-2 max-w-[400px] text-xl font-semibold leading-tight sm:text-2xl">Mejoramos espacios existentes para lo que viene.</p></div></div></div></section>
+
+    <section id="servicios" className="scroll-mt-20 border-t border-white/10 bg-[#0b1525] px-5 py-24 sm:px-8 lg:px-8 lg:py-36"><div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.77fr_1.23fr] lg:gap-20"><div data-construction-reveal className="self-start lg:sticky lg:top-28"><p className="mb-5 text-xs font-bold uppercase tracking-[.22em] text-[#FCA311]">02 / Qué hacemos</p><h2 className="text-4xl font-semibold leading-[1.06] tracking-[-.05em] sm:text-5xl lg:text-6xl">De la adecuación al <span className="text-[#FCA311]">acabado final.</span></h2><p className="mt-7 max-w-[390px] leading-relaxed text-white/60">Trabajos interiores y reparaciones de escala manejable, definidos según las condiciones reales del espacio.</p><Link href="/contacto" className="mt-8 inline-flex items-center gap-3 border-b border-[#FCA311] pb-2 text-sm font-bold uppercase tracking-[.12em] hover:text-[#FCA311]">Consultar un trabajo <ArrowUpRight size={17} aria-hidden="true" /></Link></div><div className="space-y-3">{services.map((service) => { const Icon = service.icon; return <article data-construction-service key={service.number} className="border border-white/10 bg-[#111e31] p-6 sm:p-8 lg:p-10"><div className="flex items-start justify-between gap-5"><span className="text-xs font-bold tracking-[.2em] text-[#FCA311]">{service.number} / 04</span><Icon size={26} className="text-[#FCA311]" aria-hidden="true" /></div><h3 className="mt-11 max-w-[550px] text-2xl font-semibold leading-tight tracking-[-.035em] sm:text-4xl">{service.title}</h3><p className="mt-4 max-w-[550px] text-sm leading-relaxed text-white/60 sm:text-base">{service.text}</p><ul className="mt-7 grid gap-3 border-t border-white/15 pt-6 text-sm text-white/75 sm:grid-cols-2">{service.details.map((detail) => <li key={detail} className="flex gap-3"><span className="mt-[.55em] size-1.5 shrink-0 bg-[#FCA311]" />{detail}</li>)}</ul></article> })}</div></div></section>
+
+    <section className="relative isolate overflow-hidden bg-[#14213D] px-5 py-24 sm:px-8 lg:px-8 lg:py-36"><div className="absolute -right-16 -top-40 text-[380px] font-black leading-none tracking-[-.15em] text-white/[.035]" aria-hidden="true">D</div><div className="relative mx-auto grid max-w-[1440px] items-end gap-12 lg:grid-cols-[1fr_.7fr]"><div data-construction-reveal><p className="mb-5 text-xs font-bold uppercase tracking-[.22em] text-[#FCA311]">Criterio técnico</p><h2 className="max-w-[760px] text-4xl font-semibold leading-[1.06] tracking-[-.05em] sm:text-5xl lg:text-6xl">Una intervención física también necesita <span className="text-[#FCA311]">orden y claridad.</span></h2></div><div data-construction-reveal className="border-l-2 border-[#FCA311] pl-6"><p className="text-base leading-relaxed text-white/70">Coordinamos materiales, etapas y cambios relevantes para que el resultado responda al uso previsto y la ejecución sea más fácil de seguir.</p></div></div></section>
+
+    <section id="proceso" className="scroll-mt-20 px-5 py-24 sm:px-8 lg:px-8 lg:py-36"><div className="mx-auto max-w-[1440px]"><div data-construction-reveal className="max-w-[780px]"><p className="mb-5 text-xs font-bold uppercase tracking-[.22em] text-[#FCA311]">03 / Cómo trabajamos</p><h2 className="text-4xl font-semibold leading-[1.06] tracking-[-.05em] sm:text-5xl lg:text-6xl">De la visita técnica a un espacio <span className="text-[#FCA311]">listo para usar.</span></h2></div><div className="relative mt-14 grid border-t border-white/20 md:grid-cols-2 lg:grid-cols-4"><div data-construction-line className="absolute left-0 top-[-1px] hidden h-[2px] w-full origin-left scale-x-0 bg-[#FCA311] lg:block" />{process.map((step) => <div data-construction-reveal key={step.number} className="border-b border-white/15 py-8 md:px-7 lg:border-b-0 lg:border-r lg:py-10 lg:first:pl-0 lg:last:border-r-0"><span className="text-xs font-bold tracking-[.2em] text-[#FCA311]">{step.number} / 04</span><h3 className="mt-9 text-xl font-semibold">{step.title}</h3><p className="mt-3 max-w-[260px] text-sm leading-relaxed text-white/55">{step.text}</p></div>)}</div></div></section>
+
+    <section className="border-y border-white/10 bg-[#0b1525] px-5 py-24 sm:px-8 lg:px-8 lg:py-32"><div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-20"><div data-construction-reveal><ClipboardList size={30} className="text-[#FCA311]" aria-hidden="true" /><p className="mb-5 mt-8 text-xs font-bold uppercase tracking-[.22em] text-[#FCA311]">04 / Entrega y seguimiento</p><h2 className="text-4xl font-semibold leading-[1.08] tracking-[-.05em] sm:text-5xl">El trabajo no termina con la entrega.</h2><p className="mt-6 max-w-[450px] leading-relaxed text-white/60">Según el alcance contratado, documentamos lo ejecutado y compartimos información útil para el uso y mantenimiento posterior.</p></div><div className="grid gap-px bg-white/10 sm:grid-cols-2">{deliverables.map((item, index) => <div data-construction-reveal key={item} className="min-h-44 bg-[#0b1525] p-6 sm:p-8"><span className="text-xs font-bold tracking-[.2em] text-[#FCA311]">0{index + 1}</span><p className="mt-7 text-sm leading-relaxed text-white/75 sm:text-base">{item}</p></div>)}</div></div></section>
+
+    <section className="relative overflow-hidden bg-[#FCA311] px-5 py-24 text-[#14213D] sm:px-8 lg:px-8 lg:py-32"><div className="pointer-events-none absolute -right-16 -top-44 text-[440px] font-black leading-none tracking-[-.15em] text-[#14213D]/5" aria-hidden="true">D</div><div className="relative mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-10 lg:flex-row lg:items-end"><div data-construction-reveal><p className="mb-5 text-xs font-bold uppercase tracking-[.22em]">Hablemos de tu espacio</p><h2 className="max-w-[800px] text-4xl font-semibold leading-[1.04] tracking-[-.05em] sm:text-5xl lg:text-6xl">Cuéntanos qué quieres transformar.</h2><p className="mt-6 max-w-[560px] leading-relaxed text-[#14213D]/75">Coordinemos una visita técnica para entender tu proyecto y preparar una propuesta a medida.</p></div><Link href="/contacto" className="inline-flex min-h-14 shrink-0 items-center gap-4 bg-[#14213D] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-black">Solicitar una visita <ArrowUpRight size={19} aria-hidden="true" /></Link></div></section>
+
+    <footer className="border-t border-white/10 px-5 py-9 sm:px-8 lg:px-8"><div className="mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-5 text-xs text-white/50 sm:flex-row sm:items-center"><Link href="/" className="inline-flex items-center gap-2 font-semibold text-white"><Image src="/images/devwolf-dv-emblem.png" alt="" width={28} height={28} className="size-7 object-contain" />Devwolf · Ingeniería & Tecnología</Link><span>La Paz, Bolivia · © {new Date().getFullYear()}</span><Link href="/contacto" className="inline-flex items-center gap-2 text-white/75 hover:text-[#FCA311]">Contacto <ArrowRight size={14} aria-hidden="true" /></Link></div></footer>
+  </main>
 }

@@ -109,6 +109,30 @@
 }
 
 @layer base {
+  html {
+    /* Scrollbar global: amarillo de la identidad Devwolf. */
+    scrollbar-color: #FCA311 #05080D;
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #05080D;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #FCA311;
+    border: 3px solid #05080D;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFD166;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
