@@ -116,17 +116,21 @@
 @media(prefers-reduced-motion:reduce){.home *, .home *:before, .home *:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
 /* Six services in normal document flow on desktop; mobile keeps the scroll reveals. */
-.storyTrack{max-width:1440px;margin:0 auto}
+/* Six services in normal document flow on desktop; mobile keeps the scroll reveals. */
+.storyTrack{max-width:1440px;margin:0 auto;width:100%}
 .storyStage{position:relative;isolation:isolate}
-.storyScene{min-height:600px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(40px,6vw,110px);padding:64px clamp(38px,5vw,88px);background:transparent}
+.storyStage::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(180deg,rgba(252,163,17,.4) 0%,rgba(252,163,17,.12) 50%,rgba(252,163,17,.4) 100%);box-shadow:0 0 10px rgba(252,163,17,.2);pointer-events:none;z-index:1}
+.storyScene{min-height:600px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(48px,6vw,100px);padding:clamp(65px,8vh,95px) 0;background:transparent;position:relative;border-bottom:1px solid rgba(252,163,17,.16)}
+.storyScene:not(:last-of-type)::after{content:"";position:absolute;bottom:-4px;left:50%;transform:translateX(-50%) rotate(45deg);width:7px;height:7px;background:#fca311;border:1px solid #ffd166;box-shadow:0 0 10px rgba(252,163,17,.6);z-index:2}
+.storyScene:last-of-type{border-bottom:none}
 .storySceneOdd .storyVisual{order:2}.storySceneOdd .storyCopy{order:1}
 .storySceneEven .storyVisual{order:1}.storySceneEven .storyCopy{order:2}
-.storyVisual{position:relative;height:min(60svh,520px);min-height:390px;overflow:hidden;background:#14213d;border:1px solid rgba(252,163,17,.3);box-shadow:0 28px 80px rgba(0,0,0,.32)}
+.storyVisual{position:relative;height:min(60svh,520px);min-height:390px;overflow:hidden;background:#14213d;border:1px solid rgba(252,163,17,.3);box-shadow:0 28px 80px rgba(0,0,0,.32);width:100%}
 .storyVisual img{transition:transform .8s ease;object-position:center}
 .storyVisual:hover img{transform:scale(1.035)}
 .storyVisualVeil{position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,8,13,.34),transparent 40%)}
 .storyVisualTag{position:absolute;bottom:20px;left:22px;color:#fff;font-size:10px;font-weight:750;text-transform:uppercase;letter-spacing:.18em;text-shadow:0 1px 8px #05080d}
-.storyCopy{max-width:640px}
+.storyCopy{max-width:580px;width:100%}
 .storyNumber{display:flex;align-items:baseline;gap:12px;color:var(--amber);line-height:1}
 .storyNumber span:first-child{font-size:clamp(2.3rem,3.3vw,4rem);font-weight:300;letter-spacing:-.06em}
 .storyNumber span:last-child{font-size:12px;letter-spacing:.18em}
@@ -139,12 +143,14 @@
 .storyLink{display:inline-flex;align-items:center;gap:16px;margin-top:30px;padding-bottom:8px;border-bottom:1px solid var(--amber);color:#eaf0ff;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;transition:color .25s}
 .storyLink:hover{color:var(--amber)}
 @media(max-width:1023px){
-  .storyScene{min-height:0;grid-template-columns:1fr;gap:0;padding:0 0 54px;margin-bottom:54px;border-bottom:1px solid var(--line);background:transparent}
+  .storyStage::before{display:none}
+  .storyScene{min-height:0;grid-template-columns:1fr;gap:0;padding:0 0 54px;margin-bottom:54px;border-bottom:1px solid rgba(252,163,17,.2);background:transparent}
+  .storyScene:not(:last-of-type)::after{left:30px}
   .storyScene:last-of-type{margin-bottom:0}
   .storySceneOdd .storyVisual,.storySceneEven .storyVisual{order:1}
   .storySceneOdd .storyCopy,.storySceneEven .storyCopy{order:2}
   .storyVisual{height:clamp(300px,52vw,500px);min-height:0}
-  .storyCopy{padding:32px 6px 0}
+  .storyCopy{padding:32px 0 0;max-width:100%}
   .storyCopy h3{font-size:clamp(2.8rem,7vw,5rem)}
 }
 @media(max-width:700px){
